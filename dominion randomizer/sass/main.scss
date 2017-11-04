@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css?family=Cinzel|Lato');
+@import 'breakpoint';
+@import 'variables';
+
+$cardHeight : 800px; //These must match values in main.js.
+$splaySize : 60px;
+
+body{
+	font-family: 'Lato', sans-serif;
+	font-size: 15px;
+
+	.big-wrap{
+		height: 5000px;
+		.container-fluid{
+			position: relative;
+		}
+	}
+
+}
+
+//General Classes
+.no-side-padding{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+img{
+	max-width: 100%;
+}
+
+html{
+	transition: 1.5s ease-in-out
+}
+
+//Classes for home page.
+.card{
+	height: $cardHeight;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	z-index: 200;
+	.col-sm-12{
+		height: 100%;
+	}
+	h2.section-title{
+		text-align: center;
+		font-size: 2em;
+	}
+	a.section-anchor{
+		color: black;
+	}
+	&.top-card{
+		z-index: 100;
+		margin-top: 0px;
+		top: 0px;
+		background: url("../img/gallery/snow-sb1.jpg");
+		height: $cardHeight;
+		h1{
+			font-size: 3em;
+			text-align: center;
+			margin-top: $cardHeight / 2;
+			transition: margin-top .5s;
+			a.section-anchor{
+				color: white;
+			}
+		}
+		.hint-arrow{
+			display: none;
+			z-index: 110;
+			position: absolute;
+			bottom: 10px;
+			left: 50%;
+			>a{
+				display: block;
+			    position: relative;
+				left: -50%;
+			}
+			.glyphicon{
+				font-size: 3em;
+			}
+		}
+	}
+	&.card-storage{
+		background-color: #75bbfd;
+	}
+	&.randomizer{
+		background-color: white;
+	}
+	&.battlecruisers{
+		background-color: gray;
+	}
+	.image-section{
+		img{
+			margin: auto;
+		}
+	}
+
+	//On Desktop only:
+	@include breakpoint ($sm) {
+		position: absolute;
+		width: 100%;
+		&.top-card{
+			position: fixed;
+			h1{
+				&.repositioned{
+					margin-top: 5px;
+				}
+			}
+			.hint-arrow{
+				display: block;
+			}
+		}
+		&.locked{
+			position: fixed;
+		}
+	}
+}
+
+//Classes for Dominion Randomizer
+.top-header-column{
+	position: relative;
+	margin-bottom: 1em;
+	.image-wrap{
+		min-height: 150px;
+		max-height: 300px;
+		overflow: hidden;
+		z-index: 10;
+		position: relative;
+		>.transparancy{
+			height: 100%;
+			width: 100%;
+			background: rgba(0,0,0,.5);
+			position: absolute;
+			top: 0px;
+			z-index: 20;
+		}
+		>img{
+			z-index: 15;
+			position: relative;
+			max-width: none;
+			margin-left: -25%;
+			width: 150%;
+			@include breakpoint ($mobile) {
+				max-width: 100%;
+				margin-left: auto;
+				width: auto;
+
+			}
+			@include breakpoint ($md) {
+				bottom: 5em;
+			}
+		}
+	}
+	>h1{
+		color: white;
+		position: absolute;
+		z-index: 100;
+		top: .5em;
+		font-family: Cinzel;
+
+		@include breakpoint ($mobile) {
+			top: 1em;
+			font-size: 2.75em;
+		}
+		@include breakpoint ($sm) {
+			top: 1.5em;
+			font-size: 3.5em;
+		}
+		left: 50%;
+		-webkit-transform: translateX(-50%);
+		transform: translateX(-50%);
+		text-shadow: 3px 3px 5px #000000;
+	}
+}
+
+.form-group.expansion-list{
+	.col-xs-6{
+		padding-left: 0px;
+	}
+	.checkbox{
+		//This makes the sets of expansions line up correctly.
+		margin-top: 0px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+//Variables for the colors of the cards.
+$reaction: rgba(0,178,246,1);
+$treasure: rgba(250,227,50,1);
+$victory: rgba(0,176,80,1);
+$new_victory: #30bf71;
+$attack: rgba(255,0,0,.7);
+$duration: #f69400;
+$reserve: #bed8a9;
+
+.results-panel{
+	margin-top: 2em;
+	@include breakpoint ($sm) {
+		width: 60%;
+	}
+
+	.panel-heading{
+		h2{
+			margin-top: 10px;
+		}
+	}
+
+	li.list-group-item{
+		font-size: 1.2em;
+
+		//Colors for card types.
+		&.reaction{
+			background-color: $reaction;
+			color: white;
+		}
+		&.treasure{
+			background-color: $treasure;
+		}
+		&.treasure.reaction{
+			background: linear-gradient(to bottom, $treasure 0%, $reaction 100%);
+			color: black;
+		}
+		&.victory{
+			background-color: $new_victory;
+			color: black;
+		}
+		&.vic-act{
+			background: linear-gradient(to bottom, white 0%, $victory 100%);
+			color: black;
+		}
+		&.treas-act{
+			background: linear-gradient(to bottom, white 0%, $treasure 100%);
+			color: black;
+		}
+		&.treasure.victory{
+			background: linear-gradient(to bottom, $treasure 0%, $victory 100%);
+			color: black;
+		}
+		&.victory.reaction{
+			background: linear-gradient(to bottom, $victory 0%, $reaction 100%);
+		}
+		&.attack{
+			background-color: $attack;
+			color: white;
+		}
+		&.attack.treasure{
+			background: linear-gradient(to bottom, $attack 0%, $treasure 100%);
+			color: black;
+		}
+		&.duration{
+			background-color: $duration;
+		}
+		&.duration.attack{
+			background: linear-gradient(to bottom, $duration 0%, $attack 100%);
+			color: white;
+		}
+		&.duration.reaction{
+			background: linear-gradient(to bottom, $duration 0%, $reaction 100%);
+			color: black;
+		}
+		&.reserve{
+			background: $reserve;
+			color: black;
+		}
+		&.reserve.treasure{
+			background: linear-gradient(to bottom, $treasure 0%, $reserve 100%);
+		}
+		&.reserve.vic-act{
+			background: linear-gradient(to bottom, $victory 0%, $reserve 100%);
+			color: black;
+		}
+
+		&.bane{
+			border: 3px dashed black;
+		}
+		.bane-label{
+			font-style: italic;
+		}
+
+		.expansion-label{
+			display: block;
+			font-size: .825em;
+			font-style: italic;
+		}
+		.debt-cost{
+			background-color: orange;
+			color: white;
+			font-weight: bold;
+		}
+	}
+
+	.panel-footer{
+		ul.setup-list{
+			font-size: 1.2em;
+			padding-left: 1em;
+		}
+	}
+}

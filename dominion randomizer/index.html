@@ -1,0 +1,285 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Dominion Randomizer</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body ng-app="dominion" ng-controller="dominionController">
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 no-side-padding top-header-column">
+                    <div class="image-wrap">
+                        <img src="img/dom-cover-wide.jpg" alt="Dominion Background image"/>
+                        <div class="transparancy"></div>
+                    </div>
+                    <h1 class="text-center">Dominion &nbsp;Randomizer</h1>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h2>Expansions</h2>
+                    <div class="form-group expansion-list">
+                        <div ng-repeat="x in expansions">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="base" ng-model="x.status">
+                                    <span ng-bind="x.name"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <h2>Colonies and Platinums</h2>
+                    <div class="form-group">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="colPlat" ng-model="colPlat" value="pros">
+                                Randomize by number of Prosperity Cards
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="colPlat" ng-model="colPlat" value="first">
+                                Randomize based on first Kingdom card
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="colPlat" ng-model="colPlat" value="rand">
+                                Random
+                                <span class="badge" data-toggle="tooltip" title="40% chance of using Colonies and Platinums.">?</span>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="colPlat" ng-model="colPlat" value="on">
+                                Always On
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="colPlat" ng-model="colPlat" value="off">
+                                Always Off
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <h2>Shelters</h2>
+                    <div class="form-group">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="shelters" ng-model="shelters" value="da">
+                                Randomize by number of Dark Ages Cards
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="shelters" ng-model="shelters" value="first">
+                                Randomize based on first Kingdom Card
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="shelters" ng-model="shelters" value="rand">
+                                Random <span class="badge" data-toggle="tooltip" title="40% chance of using Shelters.">?</span>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="shelters" ng-model="shelters" value="on">
+                                Allways On
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="shelters" ng-model="shelters" value="off">
+                                Always Off
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h2>Events <span class="badge" data-toggle="tooltip" title="Events can be included even if Adventures and Empires expansions are off.">?</span></h2>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="eventsAdventures" ng-model="eventsAdventures">
+                                Adventures Events
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="eventsEmpires" ng-model="eventsEmpires">
+                                Empires Events
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="events" ng-model="events" value="one">
+                                1
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="events" ng-model="events" value="two">
+                                2
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="events" ng-model="events" value="off">
+                                None
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="events" ng-model="events" value="rand">
+                                Randomize
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <h2>Landmarks <span class="badge" data-toggle="tooltip" title="Landmarks can be included even if Empires expansion is off.">?</span></h2>
+                    <div class="form-group">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="landmarks" ng-model="landmarks" value="one">
+                                1
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="landmarks" ng-model="landmarks" value="two">
+                                2
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="landmarks" ng-model="landmarks" value="off">
+                                None
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="landmarks" ng-model="landmarks"  value="rand">
+                                Randomize
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <h2>Reactions</h2>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="require" ng-model="react">
+                                Include Reaction if Attack is present
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <h2>Costs</h2>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="spread" ng-model="spread">
+                                Include at least one card of cost 2,3,4, and 5 in the Kingdom.
+                                <span class="badge" data-toggle="tooltip" title="If checked, the Kingdom will contain at least one card of costs 2,3,4, and 5 coins or debt. This does not include Events or Landmarks">?</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button type="button" class="btn btn-primary btn-lg" ng-click="generate()">Generate!</button>
+                </div>
+            </div>
+            <!-- =========END FORM INPUT======== -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default results-panel mx-auto">
+                        <div class="panel-heading">
+                            <h2>Kingdom Cards:</h2>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="showExp" ng-model="showExp">
+                                    Show expansion names
+                                </label>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-group" >
+                                <li class="list-group-item" ng-repeat="card in kingdom | orderBy:'name' track by $index" ng-cloak
+                                ng-class="
+                                [{'reaction':card.is_reaction}, {'treasure': card.treasure > 0}, {'victory': card.victory_points > 0}, {'vic-act': card.is_action_victory}, {'attack': card.is_attack},
+                                {'bane' : card.is_bane}, {'reserve': card.is_reserve}, {'duration': card.is_duration}, {'treas-act': card.is_action_treasure} ]">
+
+                                    <span ng-bind="card.name"></span>
+                                    <div class="float-right">
+                                        <span class="bane-label" ng-if="card.is_bane === true">Bane Card&nbsp;</span>
+
+                                        <span class="treasure-cost" ng-if="card.cost_treasure > 0" ng-bind="card.cost_treasure">
+                                        </span>
+
+                                        <span class="debt-cost" ng-if="card.cost_debt > 0" ng-bind="card.cost_debt + ' debt' ">
+                                        </span>
+
+                                        <span class="potion-cost" ng-if="card.cost_potions > 0">
+                                            <img src="img/potion.png" alt=" and one potion"/>
+                                        </span>
+
+                                    </div>
+                                    <span class="expansion-label" ng-if="showExp" ng-bind="card.exp"></span>
+                                </li>
+                            </ul>
+                            <!--Events and Landmarks-->
+                            <!--<ul class="list-group">
+                                <li class="list-group-item">
+                                    <span>My Event</span>
+                                </li>
+                            </ul>-->
+                        </div>
+                        <div class="panel-footer" >
+                            <h3 ng-if="setup.length > 0">
+                                Special Setup:
+                            </h3>
+                            <ul class="setup-list">
+                                <li ng-repeat="x in setup">
+                                    <span ng-bind="x.message"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+        <script src="js/cardsJSON.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

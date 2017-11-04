@@ -1,0 +1,145 @@
+@import 'https://fonts.googleapis.com/css?family=Droid+Sans|Nobile:700i|Oswald:400,700';
+@import 'breakpoint';
+@import 'variables';
+
+body{
+	font-family: 'Droid Sans', sans-serif;
+	font-size: 15px;
+}
+
+.btn{
+	font-size: 15px;
+}
+
+//General Classes
+.no-side-padding{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+//Vertically align with button
+.align-vert-wbutton{
+	margin-top: 8px;
+}
+
+//Stat colors
+.speed{
+    background-color: #9ab06b;
+}
+.attack{
+    background-color: #d1171e;
+}
+.diplomacy{
+    background-color: #4c7bbd;
+}
+.shields{
+    background-color: #ebb21c;
+}
+
+//Hero
+.hero{
+	background-color: black;
+	padding: 1em 0em;
+	background-image: url("../img/spaceBG.png");
+	h1,h2{
+		text-align: center;
+		padding: 0em;
+		margin: 0em;
+		text-transform: uppercase;
+		color: white;
+
+	}
+	h1{
+		font-size: 3em;
+		font-family: 'Nobile', sans-serif;
+		font-weight: bold;
+		text-shadow: 0px 0px 20px rgba(255,255,255,.6);
+		@include breakpoint ($sm) {
+			font-size: 4em;
+		}
+		@include breakpoint ($lg) {
+			font-size: 6em;
+		}
+	}
+	h2{		
+		font-family: 'Oswald', sans-serif;
+		font-weight: bold;
+		font-size: 3em;
+		@include breakpoint ($sm) {
+			font-size: 3.6em;
+		}
+		@include breakpoint ($lg) {
+			font-size: 4em;
+		}
+	}
+}
+
+
+
+//Enter stats
+.form-inline .stat-input{
+	display: inline-block; //overide the bootstrap small size being display block.	
+	> input{
+		width: 4.35em;
+		padding: 6px 6px;
+		color: black;
+		&.speed-input{
+			border-color: $speed;
+			background: lighten( $speed, 25% );
+		}
+		&.attack-input{
+			border-color: $attack;
+			background: lighten( $attack, 25% );
+		}
+		&.diplomacy-input{
+			border-color: $diplomacy;
+			background: lighten( $diplomacy, 25% );
+		}		
+		&.shields-input{
+			border-color: $shields;
+			background: lighten( $shields, 25% );
+		}
+		&:focus{
+			border-color: #909090;
+		}
+
+		&::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+		  color: #505050;
+		}
+		&::-moz-placeholder { /* Firefox 19+ */
+		  color: #505050;
+		}
+	}
+	.help-block{
+		text-align: center;
+		font-size: .85em;
+	}
+}
+
+//Stat box
+.stat-list{
+	.stat-box{
+		color: white;
+		font-weight: bold;
+		text-align: center;
+		border: 1px solid white;
+		padding-left: 2px;
+		padding-right: 2px;
+		font-size: .95em;
+		@include breakpoint ($mobile) {
+			font-size: 1.1em;
+		}
+		@include breakpoint ($md) {
+			font-size: 1.25em;
+		}
+		&:first-child{
+			border-left: 0px solid white;
+		}
+		&:last-child{
+			border-right: 0px solid white;
+		}
+		> span{
+			display: block;
+		}
+	}
+}

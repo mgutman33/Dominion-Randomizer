@@ -1,0 +1,30 @@
+/*Space Deck json including functions.*/
+[
+	{
+		"id":1, 
+		"points":100, 
+		"name":"Crystalline Entity", 
+		"type":"event", 
+		"engage": [ 
+			{"1": "Your flagship receives 3 damage"}
+		],
+		"goal" :[
+			{"1": "15 Attack OR 8 Diplomacy"}
+		],
+		"failText":"Your flagship receives 5 damage. Shuffle this card into the space deck.",
+		"failFun" : "damge(5)"
+	},
+	{
+		"id":2, "points": 35, "name": "Berlinghoff Rasmussen", "type": "mission", 		
+		"engage": [
+			{"1": "Roll a D6"},
+			{"2": "Roll a D4"}
+		],
+		"goal": [
+			{"1": "(D6 + 1) Speed"},
+			{"2": "D4 Diplomacy"}
+		],
+		"reward":"",
+		"fail":"Gain one ensign"
+	}
+]

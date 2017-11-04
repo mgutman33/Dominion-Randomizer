@@ -1,0 +1,264 @@
+@import url("https://fonts.googleapis.com/css?family=Cinzel|Lato");
+/* line 8, ../sass/main.scss */
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: 15px; }
+  /* line 12, ../sass/main.scss */
+  body .big-wrap {
+    height: 5000px; }
+    /* line 14, ../sass/main.scss */
+    body .big-wrap .container-fluid {
+      position: relative; }
+
+/* line 22, ../sass/main.scss */
+.no-side-padding {
+  padding-left: 0px;
+  padding-right: 0px; }
+
+/* line 27, ../sass/main.scss */
+img {
+  max-width: 100%; }
+
+/* line 31, ../sass/main.scss */
+html {
+  transition: 1.5s ease-in-out; }
+
+/* line 36, ../sass/main.scss */
+.card {
+  height: 800px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  z-index: 200; }
+  /* line 43, ../sass/main.scss */
+  .card .col-sm-12 {
+    height: 100%; }
+  /* line 46, ../sass/main.scss */
+  .card h2.section-title {
+    text-align: center;
+    font-size: 2em; }
+  /* line 50, ../sass/main.scss */
+  .card a.section-anchor {
+    color: black; }
+  /* line 53, ../sass/main.scss */
+  .card.top-card {
+    z-index: 100;
+    margin-top: 0px;
+    top: 0px;
+    background: url("../img/gallery/snow-sb1.jpg");
+    height: 800px; }
+    /* line 59, ../sass/main.scss */
+    .card.top-card h1 {
+      font-size: 3em;
+      text-align: center;
+      margin-top: 400px;
+      transition: margin-top .5s; }
+      /* line 64, ../sass/main.scss */
+      .card.top-card h1 a.section-anchor {
+        color: white; }
+    /* line 68, ../sass/main.scss */
+    .card.top-card .hint-arrow {
+      display: none;
+      z-index: 110;
+      position: absolute;
+      bottom: 10px;
+      left: 50%; }
+      /* line 74, ../sass/main.scss */
+      .card.top-card .hint-arrow > a {
+        display: block;
+        position: relative;
+        left: -50%; }
+      /* line 79, ../sass/main.scss */
+      .card.top-card .hint-arrow .glyphicon {
+        font-size: 3em; }
+  /* line 84, ../sass/main.scss */
+  .card.card-storage {
+    background-color: #75bbfd; }
+  /* line 87, ../sass/main.scss */
+  .card.randomizer {
+    background-color: white; }
+  /* line 90, ../sass/main.scss */
+  .card.battlecruisers {
+    background-color: gray; }
+  /* line 94, ../sass/main.scss */
+  .card .image-section img {
+    margin: auto; }
+  @media (min-width: 768px) {
+    /* line 36, ../sass/main.scss */
+    .card {
+      position: absolute;
+      width: 100%; }
+      /* line 103, ../sass/main.scss */
+      .card.top-card {
+        position: fixed; }
+        /* line 106, ../sass/main.scss */
+        .card.top-card h1.repositioned {
+          margin-top: 5px; }
+        /* line 110, ../sass/main.scss */
+        .card.top-card .hint-arrow {
+          display: block; }
+      /* line 114, ../sass/main.scss */
+      .card.locked {
+        position: fixed; } }
+
+/* line 121, ../sass/main.scss */
+.top-header-column {
+  position: relative;
+  margin-bottom: 1em; }
+  /* line 124, ../sass/main.scss */
+  .top-header-column .image-wrap {
+    min-height: 150px;
+    max-height: 300px;
+    overflow: hidden;
+    z-index: 10;
+    position: relative; }
+    /* line 130, ../sass/main.scss */
+    .top-header-column .image-wrap > .transparancy {
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0px;
+      z-index: 20; }
+    /* line 138, ../sass/main.scss */
+    .top-header-column .image-wrap > img {
+      z-index: 15;
+      position: relative;
+      max-width: none;
+      margin-left: -25%;
+      width: 150%; }
+      @media (min-width: 420px) {
+        /* line 138, ../sass/main.scss */
+        .top-header-column .image-wrap > img {
+          max-width: 100%;
+          margin-left: auto;
+          width: auto; } }
+      @media (min-width: 992px) {
+        /* line 138, ../sass/main.scss */
+        .top-header-column .image-wrap > img {
+          bottom: 5em; } }
+  /* line 155, ../sass/main.scss */
+  .top-header-column > h1 {
+    color: white;
+    position: absolute;
+    z-index: 100;
+    top: .5em;
+    font-family: Cinzel;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    text-shadow: 3px 3px 5px #000000; }
+    @media (min-width: 420px) {
+      /* line 155, ../sass/main.scss */
+      .top-header-column > h1 {
+        top: 1em;
+        font-size: 2.75em; } }
+    @media (min-width: 768px) {
+      /* line 155, ../sass/main.scss */
+      .top-header-column > h1 {
+        top: 1.5em;
+        font-size: 3.5em; } }
+
+/* line 178, ../sass/main.scss */
+.form-group.expansion-list .col-xs-6 {
+  padding-left: 0px; }
+/* line 181, ../sass/main.scss */
+.form-group.expansion-list .checkbox {
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: auto; }
+
+/* line 198, ../sass/main.scss */
+.results-panel {
+  margin-top: 2em; }
+  @media (min-width: 768px) {
+    /* line 198, ../sass/main.scss */
+    .results-panel {
+      width: 60%; } }
+  /* line 205, ../sass/main.scss */
+  .results-panel .panel-heading h2 {
+    margin-top: 10px; }
+  /* line 210, ../sass/main.scss */
+  .results-panel li.list-group-item {
+    font-size: 1.2em; }
+    /* line 214, ../sass/main.scss */
+    .results-panel li.list-group-item.reaction {
+      background-color: #00b2f6;
+      color: white; }
+    /* line 218, ../sass/main.scss */
+    .results-panel li.list-group-item.treasure {
+      background-color: #fae332; }
+    /* line 221, ../sass/main.scss */
+    .results-panel li.list-group-item.treasure.reaction {
+      background: linear-gradient(to bottom, #fae332 0%, #00b2f6 100%);
+      color: black; }
+    /* line 225, ../sass/main.scss */
+    .results-panel li.list-group-item.victory {
+      background-color: #30bf71;
+      color: black; }
+    /* line 229, ../sass/main.scss */
+    .results-panel li.list-group-item.vic-act {
+      background: linear-gradient(to bottom, white 0%, #00b050 100%);
+      color: black; }
+    /* line 233, ../sass/main.scss */
+    .results-panel li.list-group-item.treas-act {
+      background: linear-gradient(to bottom, white 0%, #fae332 100%);
+      color: black; }
+    /* line 237, ../sass/main.scss */
+    .results-panel li.list-group-item.treasure.victory {
+      background: linear-gradient(to bottom, #fae332 0%, #00b050 100%);
+      color: black; }
+    /* line 241, ../sass/main.scss */
+    .results-panel li.list-group-item.victory.reaction {
+      background: linear-gradient(to bottom, #00b050 0%, #00b2f6 100%); }
+    /* line 244, ../sass/main.scss */
+    .results-panel li.list-group-item.attack {
+      background-color: rgba(255, 0, 0, 0.7);
+      color: white; }
+    /* line 248, ../sass/main.scss */
+    .results-panel li.list-group-item.attack.treasure {
+      background: linear-gradient(to bottom, rgba(255, 0, 0, 0.7) 0%, #fae332 100%);
+      color: black; }
+    /* line 252, ../sass/main.scss */
+    .results-panel li.list-group-item.duration {
+      background-color: #f69400; }
+    /* line 255, ../sass/main.scss */
+    .results-panel li.list-group-item.duration.attack {
+      background: linear-gradient(to bottom, #f69400 0%, rgba(255, 0, 0, 0.7) 100%);
+      color: white; }
+    /* line 259, ../sass/main.scss */
+    .results-panel li.list-group-item.duration.reaction {
+      background: linear-gradient(to bottom, #f69400 0%, #00b2f6 100%);
+      color: black; }
+    /* line 263, ../sass/main.scss */
+    .results-panel li.list-group-item.reserve {
+      background: #bed8a9;
+      color: black; }
+    /* line 267, ../sass/main.scss */
+    .results-panel li.list-group-item.reserve.treasure {
+      background: linear-gradient(to bottom, #fae332 0%, #bed8a9 100%); }
+    /* line 270, ../sass/main.scss */
+    .results-panel li.list-group-item.reserve.vic-act {
+      background: linear-gradient(to bottom, #00b050 0%, #bed8a9 100%);
+      color: black; }
+    /* line 275, ../sass/main.scss */
+    .results-panel li.list-group-item.bane {
+      border: 3px dashed black; }
+    /* line 278, ../sass/main.scss */
+    .results-panel li.list-group-item .bane-label {
+      font-style: italic; }
+    /* line 282, ../sass/main.scss */
+    .results-panel li.list-group-item .expansion-label {
+      display: block;
+      font-size: .825em;
+      font-style: italic; }
+    /* line 287, ../sass/main.scss */
+    .results-panel li.list-group-item .debt-cost {
+      background-color: orange;
+      color: white;
+      font-weight: bold; }
+  /* line 295, ../sass/main.scss */
+  .results-panel .panel-footer ul.setup-list {
+    font-size: 1.2em;
+    padding-left: 1em; }
