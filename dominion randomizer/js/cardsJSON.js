@@ -2836,7 +2836,8 @@ var cardsJSON = [
 	  "treasure": 0,
 	  "plus_cards": 2,
 	  "victory_points": 0,
-	  "plus_buys": 0
+	  "plus_buys": 0,
+	  "is_looter": true
 	},
 	{
 	  "description": "You may trash an Action card from your hand. If you don\u2019t, trash this.\n___\nWhen you gain this, gain two Ruins.",
@@ -2853,7 +2854,8 @@ var cardsJSON = [
 	  "treasure": 0,
 	  "plus_cards": 0,
 	  "victory_points": 0,
-	  "plus_buys": 0
+	  "plus_buys": 0,
+	  "is_looter": true
 	},
 	{
 	  "description": "Worth 1 VP for every 3 Silvers in your deck.\n___\nWhen you trash this, gain 3 Silvers.",
@@ -3041,7 +3043,8 @@ var cardsJSON = [
 	  "plus_cards": 0,
 	  "victory_points": 0,
 	  "plus_buys": 0,
-	  "spoils": true
+	  "spoils": true,
+	  "is_looter": true
 	},
 	{
 	  "description": "When one of your cards is trashed, you may discard this from your hand. If you do, gain a Gold.",

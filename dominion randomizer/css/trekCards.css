@@ -1,119 +1,92 @@
 @import "https://fonts.googleapis.com/css?family=Droid+Sans|Nobile:700i|Oswald:400,700";
-/* line 5, ../sass/trekCards.scss */
 body {
   font-family: 'Droid Sans', sans-serif;
   font-size: 15px; }
 
-/* line 10, ../sass/trekCards.scss */
 .btn {
   font-size: 15px; }
 
-/* line 15, ../sass/trekCards.scss */
 .no-side-padding {
   padding-left: 0px;
   padding-right: 0px; }
 
-/* line 21, ../sass/trekCards.scss */
 .align-vert-wbutton {
   margin-top: 8px; }
 
-/* line 26, ../sass/trekCards.scss */
 .speed {
   background-color: #9ab06b; }
 
-/* line 29, ../sass/trekCards.scss */
 .attack {
   background-color: #d1171e; }
 
-/* line 32, ../sass/trekCards.scss */
 .diplomacy {
   background-color: #4c7bbd; }
 
-/* line 35, ../sass/trekCards.scss */
 .shields {
   background-color: #ebb21c; }
 
-/* line 40, ../sass/trekCards.scss */
 .hero {
   background-color: black;
   padding: 1em 0em;
   background-image: url("../img/spaceBG.png"); }
-  /* line 44, ../sass/trekCards.scss */
   .hero h1, .hero h2 {
     text-align: center;
     padding: 0em;
     margin: 0em;
     text-transform: uppercase;
     color: white; }
-  /* line 52, ../sass/trekCards.scss */
   .hero h1 {
     font-size: 3em;
     font-family: 'Nobile', sans-serif;
     font-weight: bold;
     text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.6); }
     @media (min-width: 768px) {
-      /* line 52, ../sass/trekCards.scss */
       .hero h1 {
         font-size: 4em; } }
     @media (min-width: 1200px) {
-      /* line 52, ../sass/trekCards.scss */
       .hero h1 {
         font-size: 6em; } }
-  /* line 64, ../sass/trekCards.scss */
   .hero h2 {
     font-family: 'Oswald', sans-serif;
     font-weight: bold;
     font-size: 3em; }
     @media (min-width: 768px) {
-      /* line 64, ../sass/trekCards.scss */
       .hero h2 {
         font-size: 3.6em; } }
     @media (min-width: 1200px) {
-      /* line 64, ../sass/trekCards.scss */
       .hero h2 {
         font-size: 4em; } }
 
-/* line 80, ../sass/trekCards.scss */
 .form-inline .stat-input {
   display: inline-block; }
-  /* line 82, ../sass/trekCards.scss */
   .form-inline .stat-input > input {
     width: 4.35em;
     padding: 6px 6px;
     color: black; }
-    /* line 86, ../sass/trekCards.scss */
     .form-inline .stat-input > input.speed-input {
       border-color: #9ab06b;
       background: #d3dcbe; }
-    /* line 90, ../sass/trekCards.scss */
     .form-inline .stat-input > input.attack-input {
       border-color: #d1171e;
       background: #f0777c; }
-    /* line 94, ../sass/trekCards.scss */
     .form-inline .stat-input > input.diplomacy-input {
       border-color: #4c7bbd;
       background: #a9c0df; }
-    /* line 98, ../sass/trekCards.scss */
     .form-inline .stat-input > input.shields-input {
       border-color: #ebb21c;
       background: #f5da91; }
-    /* line 102, ../sass/trekCards.scss */
     .form-inline .stat-input > input:focus {
       border-color: #909090; }
-    /* line 106, ../sass/trekCards.scss */
     .form-inline .stat-input > input::-webkit-input-placeholder {
       /* Chrome/Opera/Safari */
       color: #505050; }
-    /* line 109, ../sass/trekCards.scss */
     .form-inline .stat-input > input::-moz-placeholder {
       /* Firefox 19+ */
       color: #505050; }
-  /* line 113, ../sass/trekCards.scss */
   .form-inline .stat-input .help-block {
     text-align: center;
     font-size: .85em; }
 
-/* line 121, ../sass/trekCards.scss */
 .stat-list .stat-box {
   color: white;
   font-weight: bold;
@@ -123,19 +96,14 @@ body {
   padding-right: 2px;
   font-size: .95em; }
   @media (min-width: 420px) {
-    /* line 121, ../sass/trekCards.scss */
     .stat-list .stat-box {
       font-size: 1.1em; } }
   @media (min-width: 992px) {
-    /* line 121, ../sass/trekCards.scss */
     .stat-list .stat-box {
       font-size: 1.25em; } }
-  /* line 135, ../sass/trekCards.scss */
   .stat-list .stat-box:first-child {
     border-left: 0px solid white; }
-  /* line 138, ../sass/trekCards.scss */
   .stat-list .stat-box:last-child {
     border-right: 0px solid white; }
-  /* line 141, ../sass/trekCards.scss */
   .stat-list .stat-box > span {
     display: block; }

@@ -188,6 +188,12 @@ dominion.controller('dominionController', function($scope){
 		addItemToSetup(type,message);
 	}
 
+	function addRuins(){
+		var type="addRuins";
+		var message = "Ruins (10 curses per number of players minus one)"
+		addItemToSetup(type,message);
+	}
+
 	/*Function for checking the kingdom cards for special setup rules. Called after kingdom is
 	picked. Includes events and landmarks. Can also be called after a card is replaced (future idea)*/
 	function checkForKingdomSetup(kingdom){
@@ -268,7 +274,9 @@ dominion.controller('dominionController', function($scope){
 			if (kingdom[i].cost_potions > 0){
 				addPotions();
 			}
-
+			if (kingdom[i].is_looter){
+				addRuins();
+			}
 		}
 	}
 	//When the generate button is clicked.
