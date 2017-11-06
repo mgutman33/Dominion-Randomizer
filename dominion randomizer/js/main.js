@@ -190,7 +190,7 @@ dominion.controller('dominionController', function($scope){
 
 	function addRuins(){
 		var type="addRuins";
-		var message = "Ruins (10 curses per number of players minus one)"
+		var message = "Ruins (10 per [number of players minus one])"
 		addItemToSetup(type,message);
 	}
 
