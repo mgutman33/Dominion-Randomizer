@@ -14,7 +14,7 @@ var landmarksJSON = [
 			"Landmark"
 		]
 	}, {
-		"card" : "Bandit_Fort",
+		"card" : "Bandit Fort",
 		"set" : "Empires",
 		"cost" : "0",
 		"type" : [
@@ -49,7 +49,7 @@ var landmarksJSON = [
 			"Landmark"
 		]
 	}, {
-		"card" : "Defiled_Shrine",
+		"card" : "Defiled Shrine",
 		"set" : "Empires",
 		"cost" : "0",
 		"type" : [
@@ -77,7 +77,7 @@ var landmarksJSON = [
 			"Landmark"
 		]
 	}, {
-		"card" : "Mountain_Pass",
+		"card" : "Mountain Pass",
 		"set" : "Empires",
 		"cost" : "0",
 		"type" : [
@@ -126,7 +126,7 @@ var landmarksJSON = [
 			"Landmark"
 		]
 	}, {
-		"card" : "Triumphal_Arch",
+		"card" : "Triumphal Arch",
 		"set" : "Empires",
 		"cost" : "0",
 		"type" : [
@@ -140,7 +140,7 @@ var landmarksJSON = [
 			"Landmark"
 		]
 	}, {
-		"card" : "Wolf_Den",
+		"card" : "Wolf Den",
 		"set" : "Empires",
 		"cost" : "0",
 		"type" : [

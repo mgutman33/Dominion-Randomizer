@@ -195,7 +195,7 @@ dominion.controller('dominionController', function($scope){
 	}
 
 	/*Function for checking the kingdom cards for special setup rules. Called after kingdom is
-	picked. Includes events and landmarks. Can also be called after a card is replaced (future idea)*/
+	picked. Includes events and landmarks. Can also be called after a card is replaced (future idea).*/
 	function checkForKingdomSetup(kingdom){
 		for (var i=0; i<kingdom.length; i++){
 			//Single card setup. Checking card names.
@@ -547,9 +547,10 @@ dominion.controller('dominionController', function($scope){
 			}
 
 			//Events and landmarks
-			$scope.landmarks = angular.fromJson(landmarksJSON);
-			$scope.events = angular.fromJson(eventsJSON);
+			$scope.landmarksArray = angular.fromJson(landmarksJSON);
+			$scope.eventsArray = angular.fromJson(eventsJSON);
 
+			//Combine the Kingdom, events, and landmarks into one array with everything? Or Pass all to function.
 			checkForKingdomSetup($scope.kingdom);
 
 			//Debugging number of cost selected cards.
