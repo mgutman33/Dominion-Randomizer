@@ -26,16 +26,16 @@ dominion.controller('dominionController', function($scope){
 	//Create array of objects of all sets and define their defauls.
 	$scope.expansions = [
 		{name: "Dominion", status: true},
-		{name: "Intrigue", status: false},
-		{name: "Seaside", status: false},
-		{name: "Alchemy", status: false},
-		{name: "Prosperity", status: false},
-		{name: "Cornucopia", status: false},
-		{name: "Hinterlands", status: false},
-		{name: "Dark Ages", status: false},
-		{name: "Guilds", status: false},
-		{name: "Adventures", status: false},
-		{name: "Empires", status: false}
+		{name: "Intrigue", status: true},
+		{name: "Seaside", status: true},
+		{name: "Alchemy", status: true},
+		{name: "Prosperity", status: true},
+		{name: "Cornucopia", status: true},
+		{name: "Hinterlands", status: true},
+		{name: "Dark Ages", status: true},
+		{name: "Guilds", status: true},
+		{name: "Adventures", status: true},
+		{name: "Empires", status: true}
 	];
 
 	//Function to filter the active expansions.
@@ -404,24 +404,26 @@ dominion.controller('dominionController', function($scope){
 				var reactionPool = $scope.filteredCards.slice(); //Make a copy of the filteredCards.
 				var reactionFlag = false;
 				var newReact; //This will be the new added reaction card.
+				var removedFromKingdom; //This is the card that was removed.
 
 				//Remove a random card from the kingdom.
 
-				//If there is only one attack card, remove one non-attack from the kingdom.
+				//If there is only one attack card, remove one non-attack from the kingdom, that was not cost selected.
 				if (attackNumber === 1){
 					while ($scope.kingdom.length > 9){
 						rand = Math.floor(Math.random() * $scope.kingdom.length);
 						if ($scope.kingdom[rand].is_attack === false && $scope.kingdom[rand].costSelected === false){
-							$scope.kingdom.splice(rand,1);
+							removedFromKingdom = $scope.kingdom.splice(rand,1);
 						}
 					}
 				}
+				//Otherwise, just remove any non-cost selected card.
 				else{
 					var correctlyRemovedCard = false;
 					while (correctlyRemovedCard === false){
 						rand = Math.floor(Math.random() * $scope.kingdom.length);
 						if ($scope.kingdom[rand].costSelected === false) {
-							$scope.kingdom.splice(rand,1);
+							removedFromKingdom = $scope.kingdom.splice(rand,1);
 							correctlyRemovedCard = true;
 						}
 					}
@@ -448,6 +450,8 @@ dominion.controller('dominionController', function($scope){
 				//If all remaining cards are search but there are no reactions, display error message.
 				if (reactionFlag === false){
 					alert("No reaction card could be found in the sets specified.");
+					//If this happens, return the card that was originally removed, otherwise there will not be enough cards.
+					$scope.kingdom.push(removedFromKingdom[0]);
 				}
 			}
 
@@ -553,10 +557,10 @@ dominion.controller('dominionController', function($scope){
 			}
 
 			//Events and landmarks
-			$scope.landmarksArray = angular.fromJson(landmarksJSON);
-			$scope.eventsArray = angular.fromJson(eventsJSON);
+			allLandmarksArray = angular.fromJson(landmarksJSON);
+			allEventsArray = angular.fromJson(eventsJSON);
 
-
+			
 
 			//Combine the Kingdom, events, and landmarks into one array with everything? Or Pass all to function.
 			checkForKingdomSetup($scope.kingdom);
