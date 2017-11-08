@@ -253,6 +253,12 @@ dominion.controller('dominionController', function($scope){
 				case 'Miser':
 					addTavernMat();
 					break;
+				case 'Gladiator/Fortune':
+				case 'Capital':
+				case 'Tax':
+				case 'Mountain Pass':
+					addDebt();
+					break;
 			}
 
 			//Tokens and Taven Mat. Checking card properties other than name.
@@ -549,6 +555,8 @@ dominion.controller('dominionController', function($scope){
 			//Events and landmarks
 			$scope.landmarksArray = angular.fromJson(landmarksJSON);
 			$scope.eventsArray = angular.fromJson(eventsJSON);
+
+
 
 			//Combine the Kingdom, events, and landmarks into one array with everything? Or Pass all to function.
 			checkForKingdomSetup($scope.kingdom);

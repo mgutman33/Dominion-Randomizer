@@ -3656,7 +3656,7 @@ var cardsJSON = [
 		"is_attack": false,
 		"cost_treasure": 5,
 		"is_reaction": false,
-		"Treasure": 2
+		"treasure": 2
 	},
 	{
 		"exp": "Adventures",
@@ -3674,7 +3674,7 @@ var cardsJSON = [
 		"is_reaction": false,
 		"is_duration": true
 	},
-	//EMPIRES
+	//EMPIRES  - cost then alphabetical.--------
 	{
 		"exp": "Empires",
 		"name":"Engineer",
@@ -3682,22 +3682,6 @@ var cardsJSON = [
 		"cost_treasure": 0,
 		"is_reaction": false,
 		"cost_debt": 4
-	},
-	{
-		"exp": "Empires",
-		"name":"Enchantress",
-		"is_attack": true,
-		"cost_treasure": 3,
-		"is_reaction": false,
-		"is_duration": true
-	},
-	{
-		"exp": "Empires",
-		"name":"Encampment/Plunder",
-		"is_attack": false,
-		"cost_treasure": 2,
-		"is_reaction": false,
-		"requires_vp_tokens": true
 	},
 	{
 		"exp": "Empires",
@@ -3725,6 +3709,14 @@ var cardsJSON = [
 	},
 	{
 		"exp": "Empires",
+		"name":"Encampment/Plunder",
+		"is_attack": false,
+		"cost_treasure": 2,
+		"is_reaction": false,
+		"requires_vp_tokens": true
+	},
+	{
+		"exp": "Empires",
 		"name": "Patrician/Emporium",
 		"is_attack": false,
 		"cost_treasure": 2,
@@ -3739,14 +3731,6 @@ var cardsJSON = [
 	},
 	{
 		"exp": "Empires",
-		"name": "Crown",
-		"is_attack": false,
-		"cost_treasure": 5,
-		"is_reaction": false,
-		"is_action_treasure": true
-	},
-	{
-		"exp": "Empires",
 		"name": "Castles",
 		"is_attack": false,
 		"cost_treasure": 3,
@@ -3755,19 +3739,125 @@ var cardsJSON = [
 	},
 	{
 		"exp": "Empires",
+		"name": "Catapult/Rocks",
+		"is_attack": true,
+		"cost_treasure": 3,
+		"is_reaction": false
+	},
+	{
+		"exp": "Empires",
+		"name": "Chariot Race",
+		"is_attack": false,
+		"cost_treasure": 3,
+		"is_reaction": false,
+		"requires_vp_tokens": true
+	},
+	{
+		"exp": "Empires",
+		"name":"Enchantress",
+		"is_attack": true,
+		"cost_treasure": 3,
+		"is_reaction": false,
+		"is_duration": true
+	},
+	{
+		"exp": "Empires",
+		"name": "Farmers Market",
+		"is_attack": false,
+		"cost_treasure": 3,
+		"is_reaction": false,
+		"requires_vp_tokens": true
+	},
+	{
+		"exp": "Empires",
+		"name": "Gladiator/Fortune",
+		"is_attack": false,
+		"cost_treasure": 3,
+		"is_reaction": false
+	},
+	{
+		"exp": "Empires",
+		"name": "Sacrifice",
+		"is_attack": false,
+		"cost_treasure": 4,
+		"is_reaction": false,
+		"requires_vp_tokens": true
+	},
+	{
+		"exp": "Empires",
+		"name": "Temple",
+		"is_attack": false,
+		"cost_treasure": 4,
+		"is_reaction": false,
+		"requires_vp_tokens": true
+	},
+	{
+		"exp": "Empires",
+		"name": "Villa",
+		"is_attack": false,
+		"cost_treasure": 4,
+		"is_reaction": false
+	},
+	{
+		"exp": "Empires",
 		"name": "Archive",
 		"is_attack": false,
 		"cost_treasure": 5,
 		"is_reaction": false,
 		"is_duration": true
-	}
-/*
+	},
 	{
 		"exp": "Empires",
-		"name": "",
-		"is_attack": ,
-		"cost_treasure": ,
+		"name": "Capital",
+		"is_attack": false,
+		"cost_treasure": 6,
+		"is_reaction": false,
+		"treasure": 6
+	},
+	{
+		"exp": "Empires",
+		"name": "Charm",
+		"is_attack": false,
+		"cost_treasure": 5,
+		"is_reaction": false,
+		"treasure": 1
+	},
+	{
+		"exp": "Empires",
+		"name": "Crown",
+		"is_attack": false,
+		"cost_treasure": 5,
+		"is_reaction": false,
+		"is_action_treasure": true
+	},
+	{
+		"exp": "Empires",
+		"name": "Forum",
+		"is_attack": false,
+		"cost_treasure": 5,
 		"is_reaction": false
 	},
-*/
+	{
+		"exp": "Empires",
+		"name": "Groundskeeper",
+		"is_attack": false,
+		"cost_treasure": 5,
+		"is_reaction": false,
+		"requires_vp_tokens": true
+	},
+	{
+		"exp": "Empires",
+		"name": "Legionary",
+		"is_attack": true,
+		"cost_treasure": 5,
+		"is_reaction": false
+	},
+	{
+		"exp": "Empires",
+		"name": "Wild Hunt",
+		"is_attack": false,
+		"cost_treasure": 5,
+		"is_reaction": false,
+		"requires_vp_tokens": true
+	}
 ];
