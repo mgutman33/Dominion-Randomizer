@@ -547,7 +547,8 @@ dominion.controller('dominionController', function($scope){
 			}
 
 			//Events and landmarks
-
+			$scope.landmarks = angular.fromJson(landmarksJSON);
+			$scope.events = angular.fromJson(eventsJSON);
 
 			checkForKingdomSetup($scope.kingdom);
 
