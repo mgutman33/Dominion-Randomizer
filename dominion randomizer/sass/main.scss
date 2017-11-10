@@ -2,8 +2,8 @@
 @import 'breakpoint';
 @import 'variables';
 
-$cardHeight : 800px; //These must match values in main.js.
-$splaySize : 60px;
+//$cardHeight : 800px; //These must match values in main.js.
+//$splaySize : 60px;
 
 body{
 	font-family: 'Lato', sans-serif;
@@ -28,7 +28,7 @@ html{
 }
 
 //Classes for home page.
-.card{
+/*.card{
 	height: $cardHeight;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -111,6 +111,7 @@ html{
 		}
 	}
 }
+*/
 
 //Classes for Dominion Randomizer
 .top-header-column{
@@ -190,21 +191,8 @@ $attack: rgba(255,0,0,.7);
 $duration: #f69400;
 $reserve: #bed8a9;
 
-.results-panel{
-	margin-top: 2em;
-	@include breakpoint ($sm) {
-		width: 60%;
-	}
-
-	.panel-heading{
-		h2{
-			margin-top: 10px;
-		}
-	}
-
+.results-card{
 	li.list-group-item{
-		font-size: 1.2em;
-
 		//Colors for card types.
 		&.reaction{
 			background-color: $reaction;
@@ -266,6 +254,11 @@ $reserve: #bed8a9;
 			background: linear-gradient(to bottom, $victory 0%, $reserve 100%);
 			color: black;
 		}
+		.debt-cost{
+			background-color: orange;
+			color: white;
+			font-weight: bold;
+		}
 
 		&.bane{
 			border: 3px dashed black;
@@ -278,18 +271,6 @@ $reserve: #bed8a9;
 			display: block;
 			font-size: .825em;
 			font-style: italic;
-		}
-		.debt-cost{
-			background-color: orange;
-			color: white;
-			font-weight: bold;
-		}
-	}
-
-	.panel-footer{
-		ul.setup-list{
-			font-size: 1.2em;
-			padding-left: 1em;
 		}
 	}
 }

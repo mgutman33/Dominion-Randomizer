@@ -13,66 +13,90 @@ img {
 html {
   transition: 1.5s ease-in-out; }
 
-.card {
-  height: 800px;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-  z-index: 200; }
-  .card .col-sm-12 {
-    height: 100%; }
-  .card h2.section-title {
-    text-align: center;
-    font-size: 2em; }
-  .card a.section-anchor {
-    color: black; }
-  .card.top-card {
-    z-index: 100;
-    margin-top: 0px;
-    top: 0px;
-    background: url("../img/gallery/snow-sb1.jpg");
-    height: 800px; }
-    .card.top-card h1 {
-      font-size: 3em;
-      text-align: center;
-      margin-top: 400px;
-      transition: margin-top .5s; }
-      .card.top-card h1 a.section-anchor {
-        color: white; }
-    .card.top-card .hint-arrow {
-      display: none;
-      z-index: 110;
-      position: absolute;
-      bottom: 10px;
-      left: 50%; }
-      .card.top-card .hint-arrow > a {
-        display: block;
-        position: relative;
-        left: -50%; }
-      .card.top-card .hint-arrow .glyphicon {
-        font-size: 3em; }
-  .card.card-storage {
-    background-color: #75bbfd; }
-  .card.randomizer {
-    background-color: white; }
-  .card.battlecruisers {
-    background-color: gray; }
-  .card .image-section img {
-    margin: auto; }
-  @media (min-width: 768px) {
-    .card {
-      position: absolute;
-      width: 100%; }
-      .card.top-card {
-        position: fixed; }
-        .card.top-card h1.repositioned {
-          margin-top: 5px; }
-        .card.top-card .hint-arrow {
-          display: block; }
-      .card.locked {
-        position: fixed; } }
+/*.card{
+	height: $cardHeight;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	z-index: 200;
+	.col-sm-12{
+		height: 100%;
+	}
+	h2.section-title{
+		text-align: center;
+		font-size: 2em;
+	}
+	a.section-anchor{
+		color: black;
+	}
+	&.top-card{
+		z-index: 100;
+		margin-top: 0px;
+		top: 0px;
+		background: url("../img/gallery/snow-sb1.jpg");
+		height: $cardHeight;
+		h1{
+			font-size: 3em;
+			text-align: center;
+			margin-top: $cardHeight / 2;
+			transition: margin-top .5s;
+			a.section-anchor{
+				color: white;
+			}
+		}
+		.hint-arrow{
+			display: none;
+			z-index: 110;
+			position: absolute;
+			bottom: 10px;
+			left: 50%;
+			>a{
+				display: block;
+			    position: relative;
+				left: -50%;
+			}
+			.glyphicon{
+				font-size: 3em;
+			}
+		}
+	}
+	&.card-storage{
+		background-color: #75bbfd;
+	}
+	&.randomizer{
+		background-color: white;
+	}
+	&.battlecruisers{
+		background-color: gray;
+	}
+	.image-section{
+		img{
+			margin: auto;
+		}
+	}
 
+	//On Desktop only:
+	@include breakpoint ($sm) {
+		position: absolute;
+		width: 100%;
+		&.top-card{
+			position: fixed;
+			h1{
+				&.repositioned{
+					margin-top: 5px;
+				}
+			}
+			.hint-arrow{
+				display: block;
+			}
+		}
+		&.locked{
+			position: fixed;
+		}
+	}
+}
+*/
 .top-header-column {
   position: relative;
   margin-bottom: 1em; }
@@ -129,71 +153,59 @@ html {
   margin-left: auto;
   margin-right: auto; }
 
-.results-panel {
-  margin-top: 2em; }
-  @media (min-width: 768px) {
-    .results-panel {
-      width: 60%; } }
-  .results-panel .panel-heading h2 {
-    margin-top: 10px; }
-  .results-panel li.list-group-item {
-    font-size: 1.2em; }
-    .results-panel li.list-group-item.reaction {
-      background-color: #00b2f6;
-      color: white; }
-    .results-panel li.list-group-item.treasure {
-      background-color: #fae332; }
-    .results-panel li.list-group-item.treasure.reaction {
-      background: linear-gradient(to bottom, #fae332 0%, #00b2f6 100%);
-      color: black; }
-    .results-panel li.list-group-item.victory {
-      background-color: #30bf71;
-      color: black; }
-    .results-panel li.list-group-item.vic-act {
-      background: linear-gradient(to bottom, white 0%, #00b050 100%);
-      color: black; }
-    .results-panel li.list-group-item.treas-act {
-      background: linear-gradient(to bottom, white 0%, #fae332 100%);
-      color: black; }
-    .results-panel li.list-group-item.treasure.victory {
-      background: linear-gradient(to bottom, #fae332 0%, #00b050 100%);
-      color: black; }
-    .results-panel li.list-group-item.victory.reaction {
-      background: linear-gradient(to bottom, #00b050 0%, #00b2f6 100%); }
-    .results-panel li.list-group-item.attack {
-      background-color: rgba(255, 0, 0, 0.7);
-      color: white; }
-    .results-panel li.list-group-item.attack.treasure {
-      background: linear-gradient(to bottom, rgba(255, 0, 0, 0.7) 0%, #fae332 100%);
-      color: black; }
-    .results-panel li.list-group-item.duration {
-      background-color: #f69400; }
-    .results-panel li.list-group-item.duration.attack {
-      background: linear-gradient(to bottom, #f69400 0%, rgba(255, 0, 0, 0.7) 100%);
-      color: white; }
-    .results-panel li.list-group-item.duration.reaction {
-      background: linear-gradient(to bottom, #f69400 0%, #00b2f6 100%);
-      color: black; }
-    .results-panel li.list-group-item.reserve {
-      background: #bed8a9;
-      color: black; }
-    .results-panel li.list-group-item.reserve.treasure {
-      background: linear-gradient(to bottom, #fae332 0%, #bed8a9 100%); }
-    .results-panel li.list-group-item.reserve.vic-act {
-      background: linear-gradient(to bottom, #00b050 0%, #bed8a9 100%);
-      color: black; }
-    .results-panel li.list-group-item.bane {
-      border: 3px dashed black; }
-    .results-panel li.list-group-item .bane-label {
-      font-style: italic; }
-    .results-panel li.list-group-item .expansion-label {
-      display: block;
-      font-size: .825em;
-      font-style: italic; }
-    .results-panel li.list-group-item .debt-cost {
-      background-color: orange;
-      color: white;
-      font-weight: bold; }
-  .results-panel .panel-footer ul.setup-list {
-    font-size: 1.2em;
-    padding-left: 1em; }
+.results-card li.list-group-item.reaction {
+  background-color: #00b2f6;
+  color: white; }
+.results-card li.list-group-item.treasure {
+  background-color: #fae332; }
+.results-card li.list-group-item.treasure.reaction {
+  background: linear-gradient(to bottom, #fae332 0%, #00b2f6 100%);
+  color: black; }
+.results-card li.list-group-item.victory {
+  background-color: #30bf71;
+  color: black; }
+.results-card li.list-group-item.vic-act {
+  background: linear-gradient(to bottom, white 0%, #00b050 100%);
+  color: black; }
+.results-card li.list-group-item.treas-act {
+  background: linear-gradient(to bottom, white 0%, #fae332 100%);
+  color: black; }
+.results-card li.list-group-item.treasure.victory {
+  background: linear-gradient(to bottom, #fae332 0%, #00b050 100%);
+  color: black; }
+.results-card li.list-group-item.victory.reaction {
+  background: linear-gradient(to bottom, #00b050 0%, #00b2f6 100%); }
+.results-card li.list-group-item.attack {
+  background-color: rgba(255, 0, 0, 0.7);
+  color: white; }
+.results-card li.list-group-item.attack.treasure {
+  background: linear-gradient(to bottom, rgba(255, 0, 0, 0.7) 0%, #fae332 100%);
+  color: black; }
+.results-card li.list-group-item.duration {
+  background-color: #f69400; }
+.results-card li.list-group-item.duration.attack {
+  background: linear-gradient(to bottom, #f69400 0%, rgba(255, 0, 0, 0.7) 100%);
+  color: white; }
+.results-card li.list-group-item.duration.reaction {
+  background: linear-gradient(to bottom, #f69400 0%, #00b2f6 100%);
+  color: black; }
+.results-card li.list-group-item.reserve {
+  background: #bed8a9;
+  color: black; }
+.results-card li.list-group-item.reserve.treasure {
+  background: linear-gradient(to bottom, #fae332 0%, #bed8a9 100%); }
+.results-card li.list-group-item.reserve.vic-act {
+  background: linear-gradient(to bottom, #00b050 0%, #bed8a9 100%);
+  color: black; }
+.results-card li.list-group-item .debt-cost {
+  background-color: orange;
+  color: white;
+  font-weight: bold; }
+.results-card li.list-group-item.bane {
+  border: 3px dashed black; }
+.results-card li.list-group-item .bane-label {
+  font-style: italic; }
+.results-card li.list-group-item .expansion-label {
+  display: block;
+  font-size: .825em;
+  font-style: italic; }

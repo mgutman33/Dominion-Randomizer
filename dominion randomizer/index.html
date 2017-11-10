@@ -219,9 +219,9 @@
             <!-- =========END FORM INPUT======== -->
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="panel panel-default results-panel mx-auto">
-                        <div class="panel-heading">
-                            <h2>Kingdom Cards:</h2>
+                    <div class="card results-card mx-auto">
+                        <div class="card-body">
+                            <h2 class="card-title">Kingdom Cards:</h2>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" value="showExp" ng-model="showExp">
@@ -229,51 +229,43 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="panel-body">
-                            <ul class="list-group" >
-                                <li class="list-group-item" ng-repeat="card in kingdom | orderBy:'name' track by $index" ng-cloak
-                                ng-class="
-                                [{'reaction':card.is_reaction}, {'treasure': card.treasure > 0}, {'victory': card.victory_points > 0}, {'vic-act': card.is_action_victory}, {'attack': card.is_attack},
-                                {'bane' : card.is_bane}, {'reserve': card.is_reserve}, {'duration': card.is_duration}, {'treas-act': card.is_action_treasure} ]">
+                        <ul class="list-group" >
+                            <li class="list-group-item" ng-repeat="card in kingdom | orderBy:'name' track by $index" ng-cloak
+                            ng-class="
+                            [{'reaction':card.is_reaction}, {'treasure': card.treasure > 0}, {'victory': card.victory_points > 0}, {'vic-act': card.is_action_victory}, {'attack': card.is_attack},
+                            {'bane' : card.is_bane}, {'reserve': card.is_reserve}, {'duration': card.is_duration}, {'treas-act': card.is_action_treasure} ]">
 
-                                    <span ng-bind="card.name"></span>
-                                    <div class="float-right">
-                                        <span class="bane-label" ng-if="card.is_bane === true">Bane Card&nbsp;</span>
+                                <span ng-bind="card.name"></span>
+                                <div class="float-right">
+                                    <span class="bane-label" ng-if="card.is_bane === true">Bane Card&nbsp;</span>
 
-                                        <span class="treasure-cost" ng-if="card.cost_treasure > 0" ng-bind="card.cost_treasure">
-                                        </span>
+                                    <span class="treasure-cost" ng-if="card.cost_treasure > 0" ng-bind="card.cost_treasure">
+                                    </span>
 
-                                        <span class="debt-cost" ng-if="card.cost_debt > 0" ng-bind="card.cost_debt + ' debt' ">
-                                        </span>
+                                    <span class="debt-cost" ng-if="card.cost_debt > 0" ng-bind="card.cost_debt + ' debt' ">
+                                    </span>
 
-                                        <span class="potion-cost" ng-if="card.cost_potions > 0">
-                                            <img src="img/potion.png" alt=" and one potion"/>
-                                        </span>
+                                    <span class="potion-cost" ng-if="card.cost_potions > 0">
+                                        <img src="img/potion.png" alt=" and one potion"/>
+                                    </span>
 
-                                        <span class="overpay" ng-if="card.overpay">
-                                            +
-                                        </span>
-                                    </div>
-                                    <span class="expansion-label" ng-if="showExp" ng-bind="card.exp"></span>
-                                </li>
-                            </ul>
-                            <!--Events and Landmarks-->
-                            <!--<ul class="list-group">
-                                <li class="list-group-item">
-                                    <span>My Event</span>
-                                </li>
-                            </ul>-->
-                        </div>
-                        <div class="panel-footer" >
-                            <h3 ng-if="setup.length > 0">
+                                    <span class="overpay" ng-if="card.overpay">
+                                        +
+                                    </span>
+                                </div>
+                                <span class="expansion-label" ng-if="showExp" ng-bind="card.exp"></span>
+                            </li>
+                        </ul>
+                        <div class="card-body" >
+                            <h3 class="card-title" ng-if="setup.length > 0">
                                 Special Setup:
                             </h3>
-                            <ul class="setup-list">
-                                <li ng-repeat="x in setup">
-                                    <span ng-bind="x.message"></span>
-                                </li>
-                            </ul>
                         </div>
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="x in setup">
+                                <span ng-bind="x.message"></span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
