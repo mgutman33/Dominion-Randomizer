@@ -18,9 +18,9 @@
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12 no-side-padding top-header-column">
+        <div class="">
+            <div class="row no-gutters">
+                <div class="col top-header-column">
                     <div class="image-wrap">
                         <img src="img/dom-cover-wide.jpg" alt="Dominion Background image"/>
                         <div class="transparancy"></div>
@@ -31,7 +31,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-md">
                     <h2>Expansions</h2>
                     <div class="form-group expansion-list">
                         <div ng-repeat="x in expansions">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-md">
                     <h2>Colonies and Platinums</h2>
                     <div class="form-group">
                         <div class="radio">
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-md">
                     <h2>Shelters</h2>
                     <div class="form-group">
                         <div class="radio">
@@ -117,7 +117,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-md">
                     <h2>Events <span class="badge" data-toggle="tooltip" title="Events can be included even if Adventures and Empires expansions are off.">?</span></h2>
                     <div class="form-group">
                         <div class="checkbox">
@@ -158,7 +158,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-md">
                     <h2>Landmarks <span class="badge" data-toggle="tooltip" title="Landmarks can be included even if Empires expansion is off.">?</span></h2>
                     <div class="form-group">
                         <div class="radio">
@@ -187,7 +187,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-md">
                     <h2>Reactions</h2>
                     <div class="form-group">
                         <div class="checkbox">
@@ -198,7 +198,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-md">
                     <h2>Costs</h2>
                     <div class="form-group">
                         <div class="checkbox">
@@ -211,8 +211,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12 text-center">
+            <div class="row no-gutters">
+                <div class="col text-center">
                     <button type="button" class="btn btn-primary btn-lg" ng-click="generate()">Randomize!</button>
                 </div>
             </div>

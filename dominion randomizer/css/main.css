@@ -7,10 +7,6 @@ body {
     body .big-wrap .container-fluid {
       position: relative; }
 
-.no-side-padding {
-  padding-left: 0px;
-  padding-right: 0px; }
-
 img {
   max-width: 100%; }
 
