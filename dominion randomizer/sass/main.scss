@@ -137,13 +137,13 @@ html{
 			max-width: none;
 			margin-left: -25%;
 			width: 150%;
-			@include breakpoint ($mobile) {
+			@include breakpoint ($sm) {
 				max-width: 100%;
 				margin-left: auto;
 				width: auto;
 
 			}
-			@include breakpoint ($md) {
+			@include breakpoint ($lg) {
 				bottom: 5em;
 			}
 		}
@@ -155,11 +155,11 @@ html{
 		top: .5em;
 		font-family: Cinzel;
 
-		@include breakpoint ($mobile) {
+		@include breakpoint ($sm) {
 			top: 1em;
 			font-size: 2.75em;
 		}
-		@include breakpoint ($sm) {
+		@include breakpoint ($md) {
 			top: 1.5em;
 			font-size: 3.5em;
 		}
@@ -182,6 +182,10 @@ html{
 	}
 }
 
+.rand-button{
+	margin-bottom: 5px;
+}
+
 //Variables for the colors of the cards.
 $reaction: rgba(0,178,246,1);
 $treasure: rgba(250,227,50,1);
@@ -192,7 +196,14 @@ $duration: #f69400;
 $reserve: #bed8a9;
 
 .results-card{
+	border: none;
+	border-radius: 0px;
+	padding-bottom: 15px;
+	.card-body{
+		padding-bottom: 0px;
+	}
 	li.list-group-item{
+		font-size: 1.2em;
 		//Colors for card types.
 		&.reaction{
 			background-color: $reaction;

@@ -46,6 +46,9 @@ dominion.controller('dominionController', function($scope){
 	//Track special setup for things like Col/Plats, Shelters, Spoils, etc.
 	$scope.setup = [];
 
+	//By default, sort the cards by name.
+	$scope.propName = 'name';
+
 	function checkIfExists(currType){
 		for (var i=0; i<$scope.setup.length; i++){
 			if ($scope.setup[i].type === currType){
@@ -560,7 +563,7 @@ dominion.controller('dominionController', function($scope){
 			allLandmarksArray = angular.fromJson(landmarksJSON);
 			allEventsArray = angular.fromJson(eventsJSON);
 
-			
+
 
 			//Combine the Kingdom, events, and landmarks into one array with everything? Or Pass all to function.
 			checkForKingdomSetup($scope.kingdom);
@@ -581,8 +584,12 @@ dominion.controller('dominionController', function($scope){
 			alert("At least one Expansion must be selected to randomize.");
 		}
 
-
 	};///End of Generate function.
+
+	//Reordering:
+	$scope.reorder = function(){
+		$scope.propName = $scope.sortBy;
+	}
 
 });
 

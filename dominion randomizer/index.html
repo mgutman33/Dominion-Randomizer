@@ -213,24 +213,38 @@
             </div>
             <div class="row no-gutters">
                 <div class="col text-center">
-                    <button type="button" class="btn btn-primary btn-lg" ng-click="generate()">Randomize!</button>
+                    <button type="button" class="btn btn-primary btn-lg rand-button" ng-click="generate()">Randomize!</button>
                 </div>
             </div>
             <!-- =========END FORM INPUT======== -->
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col">
                     <div class="card results-card mx-auto">
-                        <div class="card-body">
+                        <div class="card-body" ng-show="kingdom">
                             <h2 class="card-title">Kingdom Cards:</h2>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="showExp" ng-model="showExp">
-                                    Show expansion names
-                                </label>
+                            <div class="form-row align-items-center">
+                                <div class="col-12 col-md-4">
+                                    <label for="showExp">
+                                        Show expansion names
+                                    </label>
+                                    <input type="checkbox" id="showExp" value="showExp" ng-model="showExp"/>
+                                </div>
+                                <div class="col-4 col-md-2">
+                                    <div class="form-select">
+                                        <label for="sortBy">Sort By:</label>
+                                    </div>
+                                </div>
+                                <div class="col-8 col-md-6">
+                                    <select class="form-control" id="sortBy" ng-model="sortBy" ng-change="reorder()">
+                                        <option value="name" selected>Name</option>
+                                        <option value="exp">Expansion</option>
+                                        <option value="cost_treasure">Cost</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <ul class="list-group" >
-                            <li class="list-group-item" ng-repeat="card in kingdom | orderBy:'name' track by $index" ng-cloak
+                            <li class="list-group-item" ng-repeat="card in kingdom | orderBy:propName track by $index" ng-cloak
                             ng-class="
                             [{'reaction':card.is_reaction}, {'treasure': card.treasure > 0}, {'victory': card.victory_points > 0}, {'vic-act': card.is_action_victory}, {'attack': card.is_attack},
                             {'bane' : card.is_bane}, {'reserve': card.is_reserve}, {'duration': card.is_duration}, {'treas-act': card.is_action_treasure} ]">
@@ -270,6 +284,7 @@
                 </div>
             </div>
         </div>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>

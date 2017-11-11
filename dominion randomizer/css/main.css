@@ -119,7 +119,7 @@ html {
       max-width: none;
       margin-left: -25%;
       width: 150%; }
-      @media (min-width: 420px) {
+      @media (min-width: 576px) {
         .top-header-column .image-wrap > img {
           max-width: 100%;
           margin-left: auto;
@@ -137,7 +137,7 @@ html {
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     text-shadow: 3px 3px 5px #000000; }
-    @media (min-width: 420px) {
+    @media (min-width: 576px) {
       .top-header-column > h1 {
         top: 1em;
         font-size: 2.75em; } }
@@ -153,59 +153,70 @@ html {
   margin-left: auto;
   margin-right: auto; }
 
-.results-card li.list-group-item.reaction {
-  background-color: #00b2f6;
-  color: white; }
-.results-card li.list-group-item.treasure {
-  background-color: #fae332; }
-.results-card li.list-group-item.treasure.reaction {
-  background: linear-gradient(to bottom, #fae332 0%, #00b2f6 100%);
-  color: black; }
-.results-card li.list-group-item.victory {
-  background-color: #30bf71;
-  color: black; }
-.results-card li.list-group-item.vic-act {
-  background: linear-gradient(to bottom, white 0%, #00b050 100%);
-  color: black; }
-.results-card li.list-group-item.treas-act {
-  background: linear-gradient(to bottom, white 0%, #fae332 100%);
-  color: black; }
-.results-card li.list-group-item.treasure.victory {
-  background: linear-gradient(to bottom, #fae332 0%, #00b050 100%);
-  color: black; }
-.results-card li.list-group-item.victory.reaction {
-  background: linear-gradient(to bottom, #00b050 0%, #00b2f6 100%); }
-.results-card li.list-group-item.attack {
-  background-color: rgba(255, 0, 0, 0.7);
-  color: white; }
-.results-card li.list-group-item.attack.treasure {
-  background: linear-gradient(to bottom, rgba(255, 0, 0, 0.7) 0%, #fae332 100%);
-  color: black; }
-.results-card li.list-group-item.duration {
-  background-color: #f69400; }
-.results-card li.list-group-item.duration.attack {
-  background: linear-gradient(to bottom, #f69400 0%, rgba(255, 0, 0, 0.7) 100%);
-  color: white; }
-.results-card li.list-group-item.duration.reaction {
-  background: linear-gradient(to bottom, #f69400 0%, #00b2f6 100%);
-  color: black; }
-.results-card li.list-group-item.reserve {
-  background: #bed8a9;
-  color: black; }
-.results-card li.list-group-item.reserve.treasure {
-  background: linear-gradient(to bottom, #fae332 0%, #bed8a9 100%); }
-.results-card li.list-group-item.reserve.vic-act {
-  background: linear-gradient(to bottom, #00b050 0%, #bed8a9 100%);
-  color: black; }
-.results-card li.list-group-item .debt-cost {
-  background-color: orange;
-  color: white;
-  font-weight: bold; }
-.results-card li.list-group-item.bane {
-  border: 3px dashed black; }
-.results-card li.list-group-item .bane-label {
-  font-style: italic; }
-.results-card li.list-group-item .expansion-label {
-  display: block;
-  font-size: .825em;
-  font-style: italic; }
+.rand-button {
+  margin-bottom: 5px; }
+
+.results-card {
+  border: none;
+  border-radius: 0px;
+  padding-bottom: 15px; }
+  .results-card .card-body {
+    padding-bottom: 0px; }
+  .results-card li.list-group-item {
+    font-size: 1.2em; }
+    .results-card li.list-group-item.reaction {
+      background-color: #00b2f6;
+      color: white; }
+    .results-card li.list-group-item.treasure {
+      background-color: #fae332; }
+    .results-card li.list-group-item.treasure.reaction {
+      background: linear-gradient(to bottom, #fae332 0%, #00b2f6 100%);
+      color: black; }
+    .results-card li.list-group-item.victory {
+      background-color: #30bf71;
+      color: black; }
+    .results-card li.list-group-item.vic-act {
+      background: linear-gradient(to bottom, white 0%, #00b050 100%);
+      color: black; }
+    .results-card li.list-group-item.treas-act {
+      background: linear-gradient(to bottom, white 0%, #fae332 100%);
+      color: black; }
+    .results-card li.list-group-item.treasure.victory {
+      background: linear-gradient(to bottom, #fae332 0%, #00b050 100%);
+      color: black; }
+    .results-card li.list-group-item.victory.reaction {
+      background: linear-gradient(to bottom, #00b050 0%, #00b2f6 100%); }
+    .results-card li.list-group-item.attack {
+      background-color: rgba(255, 0, 0, 0.7);
+      color: white; }
+    .results-card li.list-group-item.attack.treasure {
+      background: linear-gradient(to bottom, rgba(255, 0, 0, 0.7) 0%, #fae332 100%);
+      color: black; }
+    .results-card li.list-group-item.duration {
+      background-color: #f69400; }
+    .results-card li.list-group-item.duration.attack {
+      background: linear-gradient(to bottom, #f69400 0%, rgba(255, 0, 0, 0.7) 100%);
+      color: white; }
+    .results-card li.list-group-item.duration.reaction {
+      background: linear-gradient(to bottom, #f69400 0%, #00b2f6 100%);
+      color: black; }
+    .results-card li.list-group-item.reserve {
+      background: #bed8a9;
+      color: black; }
+    .results-card li.list-group-item.reserve.treasure {
+      background: linear-gradient(to bottom, #fae332 0%, #bed8a9 100%); }
+    .results-card li.list-group-item.reserve.vic-act {
+      background: linear-gradient(to bottom, #00b050 0%, #bed8a9 100%);
+      color: black; }
+    .results-card li.list-group-item .debt-cost {
+      background-color: orange;
+      color: white;
+      font-weight: bold; }
+    .results-card li.list-group-item.bane {
+      border: 3px dashed black; }
+    .results-card li.list-group-item .bane-label {
+      font-style: italic; }
+    .results-card li.list-group-item .expansion-label {
+      display: block;
+      font-size: .825em;
+      font-style: italic; }
