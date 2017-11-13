@@ -256,7 +256,11 @@
                                     <span class="treasure-cost" ng-if="card.cost_treasure > 0" ng-bind="card.cost_treasure">
                                     </span>
 
-                                    <span class="debt-cost" ng-if="card.cost_debt > 0" ng-bind="card.cost_debt + ' debt' ">
+                                    <span class="debt-cost" ng-if="card.cost_debt > 0" ng-bind="card.cost_debt">
+
+                                    </span>
+                                    <span class="debt-icon" ng-if="card.cost_debt > 0">
+                                        <img src="img/debt.png" alt=" debt">
                                     </span>
 
                                     <span class="potion-cost" ng-if="card.cost_potions > 0">

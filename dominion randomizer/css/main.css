@@ -220,9 +220,16 @@ html {
       background: linear-gradient(to bottom, #00b050 0%, #bed8a9 100%);
       color: black; }
     .results-card li.list-group-item .debt-cost {
-      background-color: orange;
       color: white;
-      font-weight: bold; }
+      position: relative;
+      left: 32px;
+      z-index: 300; }
+    .results-card li.list-group-item .debt-icon {
+      position: relative;
+      left: 9px;
+      bottom: 1px; }
+      .results-card li.list-group-item .debt-icon > img {
+        width: 28px; }
     .results-card li.list-group-item.bane {
       border: 3px dashed black; }
     .results-card li.list-group-item .bane-label {

@@ -280,9 +280,18 @@ $reserve: #bed8a9;
 			color: black;
 		}
 		.debt-cost{
-			background-color: orange;
 			color: white;
-			font-weight: bold;
+			position: relative;
+			left: 32px;
+			z-index: 300;
+		}
+		.debt-icon{
+			position: relative;
+			left: 9px;
+			bottom: 1px;
+			>img{
+				width: 28px;
+			}
 		}
 
 		&.bane{
