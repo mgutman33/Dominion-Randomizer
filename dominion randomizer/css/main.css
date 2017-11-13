@@ -154,7 +154,7 @@ html {
   margin-right: auto; }
 
 .rand-button {
-  margin-bottom: 5px; }
+  margin-bottom: 15px; }
 
 .results-card {
   border: none;
@@ -162,8 +162,19 @@ html {
   padding-bottom: 15px; }
   .results-card .card-body {
     padding-bottom: 0px; }
+    .results-card .card-body.top-body {
+      padding: 0px 0px .75rem 0px; }
+      .results-card .card-body.top-body label {
+        margin-bottom: 0px; }
+      .results-card .card-body.top-body .checkboxLabel {
+        padding-bottom: .75rem;
+        margin-right: .75rem; }
+        @media (min-width: 768px) {
+          .results-card .card-body.top-body .checkboxLabel {
+            padding-bottom: 0px; } }
   .results-card li.list-group-item {
-    font-size: 1.2em; }
+    font-size: 1.2em;
+    padding: .6rem 1.25rem; }
     .results-card li.list-group-item.reaction {
       background-color: #00b2f6;
       color: white; }

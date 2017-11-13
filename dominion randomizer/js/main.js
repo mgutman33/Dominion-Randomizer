@@ -48,6 +48,8 @@ dominion.controller('dominionController', function($scope){
 
 	//By default, sort the cards by name.
 	$scope.propName = 'name';
+	//Setting this here correctly populates the drop down for sorting with the correct default value.
+	$scope.sortBy = $scope.propName;
 
 	function checkIfExists(currType){
 		for (var i=0; i<$scope.setup.length; i++){
@@ -586,7 +588,7 @@ dominion.controller('dominionController', function($scope){
 
 	};///End of Generate function.
 
-	//Reordering:
+	//Reordering cards in the list:
 	$scope.reorder = function(){
 		$scope.propName = $scope.sortBy;
 	}

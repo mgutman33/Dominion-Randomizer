@@ -183,7 +183,7 @@ html{
 }
 
 .rand-button{
-	margin-bottom: 5px;
+	margin-bottom: 15px;
 }
 
 //Variables for the colors of the cards.
@@ -201,9 +201,23 @@ $reserve: #bed8a9;
 	padding-bottom: 15px;
 	.card-body{
 		padding-bottom: 0px;
+		&.top-body{
+			padding: 0px 0px .75rem 0px;
+			label{
+				margin-bottom: 0px;
+			}
+			.checkboxLabel{
+				padding-bottom: .75rem;
+				margin-right: .75rem;
+				@include breakpoint ($md){
+					padding-bottom: 0px;
+				}
+			}
+		}
 	}
 	li.list-group-item{
 		font-size: 1.2em;
+		padding: .6rem 1.25rem;
 		//Colors for card types.
 		&.reaction{
 			background-color: $reaction;
