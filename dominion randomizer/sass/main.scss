@@ -307,4 +307,16 @@ $reserve: #bed8a9;
 			font-style: italic;
 		}
 	}
+
+	.setup{
+		border-radius: .25rem;
+		border: 1px solid rgba(0,0,0,0.125);
+		list-style-position: inside;
+		list-style-type: square;
+		.list-group-item{
+			border: none;
+			padding: .3rem 1.25rem;
+			display: list-item;
+		}
+	}
 }
