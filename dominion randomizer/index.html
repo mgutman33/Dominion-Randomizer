@@ -244,7 +244,7 @@
                             </div>
                         </div>
                         <ul class="list-group" >
-                            <li class="list-group-item" ng-repeat="card in kingdom | orderBy:propName track by $index" ng-cloak
+                            <li class="list-group-item" ng-repeat="card in kingdom | orderBy:[propName, 'name'] track by $index" ng-cloak
                             ng-class="
                             [{'reaction':card.is_reaction}, {'treasure': card.treasure > 0}, {'victory': card.victory_points > 0}, {'vic-act': card.is_action_victory}, {'attack': card.is_attack},
                             {'bane' : card.is_bane}, {'reserve': card.is_reserve}, {'duration': card.is_duration}, {'treas-act': card.is_action_treasure} ]">

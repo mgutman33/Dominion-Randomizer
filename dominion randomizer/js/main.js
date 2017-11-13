@@ -112,17 +112,27 @@ dominion.controller('dominionController', function($scope){
 	//Single special card setup.
 	function addTradeMat(){
 		var type="addTradeMat";
-		var message = "Trade Route Mat";
+		var message = "Trade Route Mat and tokens on each Victory Supply pile.";
 		addItemToSetup(type, message);
 	}
 	function addPirateMat(){
 		var type="addPirateMat";
-		var message = "Pirate Ship Mat";
+		var message = "Pirate Ship Mat and tokens.";
 		addItemToSetup(type, message);
 	}
 	function addBaker(){
 		var type="addBaker";
 		var message = "Each player starts with one coin token.";
+		addItemToSetup(type, message);
+	}
+	function addEmbargo(){
+		var type="addEmbargo";
+		var message = "Embargo Tokens"
+		addItemToSetup(type, message);
+	}
+	function addTournament(){
+		var type="addTournament";
+		var message="Prize pile"
 		addItemToSetup(type, message);
 	}
 
@@ -199,6 +209,12 @@ dominion.controller('dominionController', function($scope){
 		addItemToSetup(type,message);
 	}
 
+	function addYoungWitch(){
+		var type="addYoungWitch";
+		var message="Bane card, see card in dashed border above.";
+		addItemToSetup(type, message);
+	}
+
 	/*Function for checking the kingdom cards for special setup rules. Called after kingdom is
 	picked. Includes events and landmarks. Can also be called after a card is replaced (future idea).*/
 	function checkForKingdomSetup(kingdom){
@@ -263,6 +279,15 @@ dominion.controller('dominionController', function($scope){
 				case 'Tax':
 				case 'Mountain Pass':
 					addDebt();
+					break;
+				case 'Embargo':
+					addEmbargo();
+					break;
+				case 'Tournament':
+					addTournament();
+					break;
+				case 'Young Witch':
+					addYoungWitch();
 					break;
 			}
 
