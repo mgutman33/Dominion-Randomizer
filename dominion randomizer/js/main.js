@@ -51,6 +51,16 @@ dominion.controller('dominionController', function($scope){
 	//Setting this here correctly populates the drop down for sorting with the correct default value.
 	$scope.sortBy = $scope.propName;
 
+	//Check the indexes of an expansion. Specifically used when showing or hiding the drop downs for editions of Dominion and Intrigue.
+	$scope.getExpIndex = function getExpIndex(expName){
+		for (var i=0; i<$scope.expansions.length; i++){
+			if ($scope.expansions[i].name === expName){
+				return i;
+			}
+		}
+	}
+
+	//This fuction checks the setup, and sees if the current setup instructions have already been added.
 	function checkIfExists(currType){
 		for (var i=0; i<$scope.setup.length; i++){
 			if ($scope.setup[i].type === currType){
@@ -61,6 +71,7 @@ dominion.controller('dominionController', function($scope){
 		return false;
 	};
 
+	//This adds the setup to the setup array if if has not been added already.
 	function addItemToSetup(type, message){
 		if (!checkIfExists(type)){
 			$scope.setup.push({"type": type, "message": message});
