@@ -106,7 +106,7 @@ dominion.controller('dominionController', function($scope){
 	}
 	function addTavernMat(){
 		var type="addTavernMat";
-		var message = "Taven Mats";
+		var message = "Tavern Mats";
 		addItemToSetup(type, message);
 	}
 	function addDebt(){
