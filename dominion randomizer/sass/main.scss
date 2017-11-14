@@ -170,15 +170,20 @@ html{
 	}
 }
 
-.form-group.expansion-list{
-	.col-xs-6{
-		padding-left: 0px;
-	}
-	.checkbox{
-		//This makes the sets of expansions line up correctly.
-		margin-top: 0px;
-		margin-left: auto;
-		margin-right: auto;
+.expansion-name{
+	height: 26px;
+}
+.edition-selects{
+	height: 52px;
+	display: flex;
+	flex-wrap: wrap;
+	select{
+		padding: 0px;
+		height: 26px !important;
+		width: 100%;
+		&:last-child{
+			align-self: flex-end;
+		}
 	}
 }
 
@@ -315,7 +320,7 @@ $reserve: #bed8a9;
 		list-style-type: square;
 		.list-group-item{
 			border: none;
-			padding: .3rem 1.25rem;
+			padding: .1rem 1.25rem;
 			display: list-item;
 		}
 	}

@@ -31,22 +31,31 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md">
+                <div class="col-md-5">
                     <h2>Expansions</h2>
-                    <div class="form-group expansion-list">
-                        <div ng-repeat="x in expansions">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="base" ng-model="x.status">
-                                    <span ng-bind="x.name"></span>
-                                </label>
+                    <div class="row no-gutters">
+                        <div class="form-group col-4 col-sm-3 col-md-4 col-lg-3">
+                            <div ng-repeat="x in expansions" class="expansion-name">
+                                <div class="checkbox form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" ng-model="x.status">
+                                        <span ng-bind="x.name"></span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                        <select class="form-control" ng-show="expansions[getExpIndex('Dominion')].status===true">
-                            <option selected>First and Second Edition</option>
-                            <option>First Edition Only</option>
-                            <option>Second Edition Only</option>
-                        </select>
+                        <div class="col-8 col-sm-9 col-md-8 col-lg-9 edition-selects form-group">
+                            <select class="form-control"  ng-show="expansions[getExpIndex('Dominion')].status===true">
+                                <option selected>Dominion 1st and 2ed Edition</option>
+                                <option>Dominion 1st Edition Only</option>
+                                <option>Dominion 2ed Edition Only</option>
+                            </select>
+                            <select class="form-control" ng-show="expansions[getExpIndex('Intrigue')].status===true">
+                                <option selected>Intrigue 1st and 2ed Edition</option>
+                                <option>Intrigue 1st Edition Only</option>
+                                <option>Intrigue 2ed Edition Only</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md">

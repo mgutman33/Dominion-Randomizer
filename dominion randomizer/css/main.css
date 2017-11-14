@@ -146,12 +146,19 @@ html {
         top: 1.5em;
         font-size: 3.5em; } }
 
-.form-group.expansion-list .col-xs-6 {
-  padding-left: 0px; }
-.form-group.expansion-list .checkbox {
-  margin-top: 0px;
-  margin-left: auto;
-  margin-right: auto; }
+.expansion-name {
+  height: 26px; }
+
+.edition-selects {
+  height: 52px;
+  display: flex;
+  flex-wrap: wrap; }
+  .edition-selects select {
+    padding: 0px;
+    height: 26px !important;
+    width: 100%; }
+    .edition-selects select:last-child {
+      align-self: flex-end; }
 
 .rand-button {
   margin-bottom: 15px; }
@@ -245,5 +252,5 @@ html {
     list-style-type: square; }
     .results-card .setup .list-group-item {
       border: none;
-      padding: .3rem 1.25rem;
+      padding: .1rem 1.25rem;
       display: list-item; }
