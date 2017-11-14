@@ -55,8 +55,8 @@
                             </select>
                             <div class="checkbox form-check" ng-if="x.name==='Alchemy' && expansions[getExpIndex('Alchemy')].status===true">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox">
-                                    <span>Pick 3 to 5 Alchemy cards</span>
+                                    <input class="form-check-input" type="checkbox" ng-model="$parent.$parent.aprule">
+                                    Pick 3 to 5 Alchemy cards
                                 </label>
                             </div>
                         </div>
@@ -221,7 +221,7 @@
                     <div class="form-group">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" value="spread" ng-model="spread">
+                                <input type="checkbox" ng-model="spread">
                                 Include at least one card of cost 2,3,4, and 5 in the Kingdom.
                                 <span class="badge" data-toggle="tooltip" title="If checked, the Kingdom will contain at least one card of costs 2,3,4, and 5 coins or debt. This does not include Events or Landmarks">?</span>
                             </label>

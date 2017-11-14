@@ -11,15 +11,16 @@ app.controller('trekController', function($scope) {
 //App and controller for the Dominion Randomizer.
 var dominion = angular.module('dominion',[]);
 dominion.controller('dominionController', function($scope){
-	$scope.setDefaults = function(colPlat, shelters, events, landmarks, react, spread){
+	$scope.setDefaults = function(colPlat, shelters, events, landmarks, react, spread, aprule){
 		$scope.colPlat = colPlat;
 		$scope.shelters = shelters;
 		$scope.events = events;
 		$scope.landmarks = landmarks;
 		$scope.react = react;
 		$scope.spread = spread;
+		$scope.aprule = aprule;
 	};
-	$scope.setDefaults("pros", "da", "two", "one", true, true);
+	$scope.setDefaults("pros", "da", "two", "one", true, true, true);
 
 	$scope.allCards = angular.fromJson(cardsJSON);
 
@@ -50,6 +51,7 @@ dominion.controller('dominionController', function($scope){
 	$scope.propName = 'name';
 	//Setting this here correctly populates the drop down for sorting with the correct default value.
 	$scope.sortBy = $scope.propName;
+
 
 	//Check the indexes of an expansion. Specifically used when showing or hiding the drop downs for editions of Dominion and Intrigue.
 	$scope.getExpIndex = function getExpIndex(expName){
@@ -367,6 +369,8 @@ dominion.controller('dominionController', function($scope){
 			var reactionNumber = 0;
 			var numberOfPros = 0; //Count the number of Prosperity cards.
 			var numberOfDA = 0; //Count the number of Dark Ages cards.
+			var numberOfAlch = 0; //Count the number of Alchemy cards.
+
 			//If cost spread is true, use a variable for 2-5 costs of cards.
 			var costTarget;
 			var costCorrect;
