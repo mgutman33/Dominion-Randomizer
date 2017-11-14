@@ -328,6 +328,14 @@ dominion.controller('dominionController', function($scope){
 			}
 		}
 	}
+
+	//Simple function for getting random integrers.
+	function getRandomIntInclusive(min, max) {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+	}
+
 	//When the generate button is clicked.
 	$scope.generate = function(){
 
@@ -378,7 +386,7 @@ dominion.controller('dominionController', function($scope){
 				costTarget = 2;
 			}
 			//Loop for the Kingdom.
-			for (i=0; i<10; i++){
+			for (var i=0; i<10; i++){
 
 				//If spread it true, and cards costing 2-5 have not been picked yet then pick cards more specifically.
 				if ($scope.spread === true && costTarget >= 2 && costTarget <= 5) {
@@ -400,6 +408,9 @@ dominion.controller('dominionController', function($scope){
 						}
 					}
 				}
+				else if ( $scope.expansions[($scope.getExpIndex("Alchemy"))]===true && $scope.aprule===true ){
+					console.log("pick a card from Alchemy");
+				}
 				//If spread it not true, or all cards 2-5 have been picked, pick randomly.
 				else{
 					//Get a random number from 0 to length of array.
@@ -407,6 +418,10 @@ dominion.controller('dominionController', function($scope){
 					//Get the card at the rand index.
 					currentCard = $scope.filteredCards[rand];
 					currentCard.costSelected = false;
+				}
+
+				if (currentCard.exp	=== "Alchemy"){
+					numberOfAlch++;
 				}
 
 				//Add the the card picked randomly to the Kingdom
