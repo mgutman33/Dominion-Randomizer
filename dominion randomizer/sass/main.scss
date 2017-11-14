@@ -170,21 +170,9 @@ html{
 	}
 }
 
-.expansion-name{
-	height: 26px;
-}
-.edition-selects{
-	height: 52px;
-	display: flex;
-	flex-wrap: wrap;
-	select{
-		padding: 0px;
-		height: 26px !important;
-		width: 100%;
-		&:last-child{
-			align-self: flex-end;
-		}
-	}
+.editions{
+	height: 26px !important;
+	padding: 0px .7rem;
 }
 
 .rand-button{
