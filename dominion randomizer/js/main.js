@@ -377,7 +377,15 @@ dominion.controller('dominionController', function($scope){
 			var reactionNumber = 0;
 			var numberOfPros = 0; //Count the number of Prosperity cards.
 			var numberOfDA = 0; //Count the number of Dark Ages cards.
+
+			//For Alchemy picking rules.
 			var numberOfAlch = 0; //Count the number of Alchemy cards.
+			if ($scope.aprule === true){
+				var targetAlchCards = getRandomIntInclusive(3,5);
+				console.log(targetAlchCards);
+			}
+			var alchCardPicked = false;
+
 
 			//If cost spread is true, use a variable for 2-5 costs of cards.
 			var costTarget;
@@ -407,9 +415,21 @@ dominion.controller('dominionController', function($scope){
 							costTarget++;
 						}
 					}
+					if (currentCard.exp	=== "Alchemy"){
+						numberOfAlch++;
+					}
 				}
-				else if ( $scope.expansions[($scope.getExpIndex("Alchemy"))]===true && $scope.aprule===true ){
-					console.log("pick a card from Alchemy");
+				//This is if Alechmy Picking (3 to 5 alchmey cards) is enabled.
+				else if ($scope.kingdom.length >= (10 - targetAlchCards)  && numberOfAlch < targetAlchCards && $scope.expansions[($scope.getExpIndex("Alchemy"))].status===true && $scope.aprule===true){
+					alchCardPicked = false;
+					while (alchCardPicked === false){
+						rand = Math.floor(Math.random() * $scope.filteredCards.length);
+						currentCard = $scope.filteredCards[rand];
+						if (currentCard.exp === 'Alchemy'){
+							numberOfAlch++;
+							alchCardPicked=true;
+						}
+					}
 				}
 				//If spread it not true, or all cards 2-5 have been picked, pick randomly.
 				else{
@@ -418,10 +438,9 @@ dominion.controller('dominionController', function($scope){
 					//Get the card at the rand index.
 					currentCard = $scope.filteredCards[rand];
 					currentCard.costSelected = false;
-				}
-
-				if (currentCard.exp	=== "Alchemy"){
-					numberOfAlch++;
+					if (currentCard.exp	=== "Alchemy"){
+						numberOfAlch++;
+					}
 				}
 
 				//Add the the card picked randomly to the Kingdom
