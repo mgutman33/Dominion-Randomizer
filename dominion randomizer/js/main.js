@@ -382,7 +382,7 @@ dominion.controller('dominionController', function($scope){
 			var numberOfAlch = 0; //Count the number of Alchemy cards.
 			if ($scope.aprule === true){
 				var targetAlchCards = getRandomIntInclusive(3,5);
-				console.log(targetAlchCards);
+				//console.log(targetAlchCards);
 			}
 			var alchCardPicked = false;
 
@@ -420,13 +420,14 @@ dominion.controller('dominionController', function($scope){
 					}
 				}
 				//This is if Alechmy Picking (3 to 5 alchmey cards) is enabled.
+				/*I wanted to make the end of the kingdom the part where the alchmey cards are picked.*/
 				else if ($scope.kingdom.length >= (10 - targetAlchCards)  && numberOfAlch < targetAlchCards && $scope.expansions[($scope.getExpIndex("Alchemy"))].status===true && $scope.aprule===true){
 					alchCardPicked = false;
 					while (alchCardPicked === false){
 						rand = Math.floor(Math.random() * $scope.filteredCards.length);
 						currentCard = $scope.filteredCards[rand];
 						if (currentCard.exp === 'Alchemy'){
-							numberOfAlch++;
+							numberOfAlch++; //This had to be within the loop for all picking schemes.
 							alchCardPicked=true;
 						}
 					}
@@ -487,12 +488,25 @@ dominion.controller('dominionController', function($scope){
 
 				//Remove a random card from the kingdom.
 
+				/*Dealing with an edge case where alchmey picking ruels are in effect and there
+				were exactly three Alchmey cards picked. In this case, an Alchmey card should not
+				be replaced in the kingdom with a reaction.*/
+				var shouldPickAlch = true;
+				if (numberOfAlch === 3 && $scope.aprule === true){
+					shouldPickAlch = false;
+				}
+
 				//If there is only one attack card, remove one non-attack from the kingdom, that was not cost selected.
 				if (attackNumber === 1){
 					while ($scope.kingdom.length > 9){
 						rand = Math.floor(Math.random() * $scope.kingdom.length);
 						if ($scope.kingdom[rand].is_attack === false && $scope.kingdom[rand].costSelected === false){
-							removedFromKingdom = $scope.kingdom.splice(rand,1);
+							if ($scope.kingdom[rand].exp === "Alchemy" && shouldPickAlch === false){
+								//In this case, don't replace an Alchmey card.
+							}
+							else{
+								removedFromKingdom = $scope.kingdom.splice(rand,1);
+							}
 						}
 					}
 				}
@@ -502,13 +516,18 @@ dominion.controller('dominionController', function($scope){
 					while (correctlyRemovedCard === false){
 						rand = Math.floor(Math.random() * $scope.kingdom.length);
 						if ($scope.kingdom[rand].costSelected === false) {
-							removedFromKingdom = $scope.kingdom.splice(rand,1);
-							correctlyRemovedCard = true;
+							if ($scope.kingdom[rand].exp === "Alchemy" && shouldPickAlch === false){
+								//In this case, don't replace an Alchmey card.
+							}
+							else{
+								removedFromKingdom = $scope.kingdom.splice(rand,1);
+								correctlyRemovedCard = true;
+							}
 						}
 					}
 				}
 
-				//Go through remaining cards in the kingdom.
+				//Go through remaining cards in the kingdom to look for reaction cards.
 				while(reactionFlag === false && reactionPool.length > 0){
 					rand = Math.floor(Math.random() * reactionPool.length);
 					newReact = reactionPool[rand];
