@@ -210,7 +210,10 @@ $reserve: #bed8a9;
 	}
 	li.list-group-item{
 		font-size: 1.2em;
-		padding: .6rem 1.25rem;
+		padding: .6rem .75rem;
+		div.pos-rel{
+			position: relative;
+		}
 		//Colors for card types.
 		&.reaction{
 			background-color: $reaction;
@@ -277,6 +280,9 @@ $reserve: #bed8a9;
 			position: relative;
 			left: 32px;
 			z-index: 300;
+			&.alt{
+				left: 0px;
+			}
 		}
 		.debt-icon{
 			position: relative;
@@ -284,6 +290,13 @@ $reserve: #bed8a9;
 			bottom: 1px;
 			>img{
 				width: 28px;
+			}
+			&.alt{
+				right: -10px;
+			    position: absolute;
+			    top: 0px;
+			    left: auto;
+			    bottom: auto;
 			}
 		}
 

@@ -122,7 +122,7 @@
                         <div class="radio">
                             <label>
                                 <input type="radio" name="shelters" ng-model="shelters" value="on">
-                                Allways On
+                                Always On
                             </label>
                         </div>
                         <div class="radio">
@@ -268,16 +268,24 @@
                             {'bane' : card.is_bane}, {'reserve': card.is_reserve}, {'duration': card.is_duration}, {'treas-act': card.is_action_treasure} ]">
 
                                 <span ng-bind="card.name"></span>
-                                <div class="float-right">
+                                <div class="float-right pos-rel">
                                     <span class="bane-label" ng-if="card.is_bane === true">Bane Card&nbsp;</span>
 
                                     <span class="treasure-cost" ng-if="card.cost_treasure > 0" ng-bind="card.cost_treasure">
                                     </span>
 
                                     <span class="debt-cost" ng-if="card.cost_debt > 0" ng-bind="card.cost_debt">
-
                                     </span>
                                     <span class="debt-icon" ng-if="card.cost_debt > 0">
+                                        <img src="img/debt.png" alt=" debt">
+                                    </span>
+
+                                    <span class="alt-cost" ng-if="card.alt_cost" ng-bind=" '/' + card.alt_cost">
+                                    </span>
+
+                                    <span class="debt-cost alt" ng-if="card.alt_cost_debt" ng-bind="card.alt_cost_debt">
+                                    </span>
+                                    <span class="debt-icon alt" ng-if="card.alt_cost_debt">
                                         <img src="img/debt.png" alt=" debt">
                                     </span>
 

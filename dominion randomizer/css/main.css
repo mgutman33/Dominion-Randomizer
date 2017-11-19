@@ -171,7 +171,9 @@ html {
             padding-bottom: 0px; } }
   .results-card li.list-group-item {
     font-size: 1.2em;
-    padding: .6rem 1.25rem; }
+    padding: .6rem .75rem; }
+    .results-card li.list-group-item div.pos-rel {
+      position: relative; }
     .results-card li.list-group-item.reaction {
       background-color: #00b2f6;
       color: white; }
@@ -221,12 +223,20 @@ html {
       position: relative;
       left: 32px;
       z-index: 300; }
+      .results-card li.list-group-item .debt-cost.alt {
+        left: 0px; }
     .results-card li.list-group-item .debt-icon {
       position: relative;
       left: 9px;
       bottom: 1px; }
       .results-card li.list-group-item .debt-icon > img {
         width: 28px; }
+      .results-card li.list-group-item .debt-icon.alt {
+        right: -10px;
+        position: absolute;
+        top: 0px;
+        left: auto;
+        bottom: auto; }
     .results-card li.list-group-item.bane {
       border: 3px dashed black; }
     .results-card li.list-group-item .bane-label {

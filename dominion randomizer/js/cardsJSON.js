@@ -3713,21 +3713,24 @@ var cardsJSON = [
 		"is_attack": false,
 		"cost_treasure": 2,
 		"is_reaction": false,
-		"requires_vp_tokens": true
+		"requires_vp_tokens": true,
+		"alt_cost": 5
 	},
 	{
 		"exp": "Empires",
 		"name": "Patrician/Emporium",
 		"is_attack": false,
 		"cost_treasure": 2,
-		"is_reaction": false
+		"is_reaction": false,
+		"alt_cost": 5
 	},
 	{
 		"exp": "Empires",
 		"name": "Settlers/Bustling Village",
 		"is_attack": false,
 		"cost_treasure": 2,
-		"is_reaction": false
+		"is_reaction": false,
+		"alt_cost": 5
 	},
 	{
 		"exp": "Empires",
@@ -3735,14 +3738,16 @@ var cardsJSON = [
 		"is_attack": false,
 		"cost_treasure": 3,
 		"is_reaction": false,
-		"requires_vp_tokens": true
+		"requires_vp_tokens": true,
+		"alt_cost": "4-10"
 	},
 	{
 		"exp": "Empires",
 		"name": "Catapult/Rocks",
 		"is_attack": true,
 		"cost_treasure": 3,
-		"is_reaction": false
+		"is_reaction": false,
+		"alt_cost": 4
 	},
 	{
 		"exp": "Empires",
@@ -3773,7 +3778,9 @@ var cardsJSON = [
 		"name": "Gladiator/Fortune",
 		"is_attack": false,
 		"cost_treasure": 3,
-		"is_reaction": false
+		"is_reaction": false,
+		"alt_cost": 8,
+		"alt_cost_debt": 8
 	},
 	{
 		"exp": "Empires",
