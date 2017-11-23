@@ -20,7 +20,7 @@ dominion.controller('dominionController', function($scope){
 		$scope.spread = spread;
 		$scope.aprule = aprule;
 	};
-	$scope.setDefaults("pros", "da", "two", "one", true, true, true);
+	$scope.setDefaults("pros", "da", "two", 1, true, true, true);
 
 	$scope.allCards = angular.fromJson(cardsJSON);
 
@@ -52,6 +52,12 @@ dominion.controller('dominionController', function($scope){
 	//Setting this here correctly populates the drop down for sorting with the correct default value.
 	$scope.sortBy = $scope.propName;
 
+	//Events and landmarks
+	var allLandmarksArray = angular.fromJson(landmarksJSON);
+	var allEventsArray = angular.fromJson(eventsJSON);
+
+	//This will store the landmarks for the current game.
+	$scope.gameLandmarks = [];
 
 	//Check the indexes of an expansion. Specifically used when showing or hiding the drop downs for editions of Dominion and Intrigue.
 	$scope.getExpIndex = function getExpIndex(expName){
@@ -59,6 +65,24 @@ dominion.controller('dominionController', function($scope){
 			if ($scope.expansions[i].name === expName){
 				return i;
 			}
+		}
+	}
+
+	//This function picks a landmark given the number to pick and the given array of landmarks.
+	function pickLandmark(numberOfLandmarks, allLandmarksArray){
+		var i = 0;
+		//Need to copy the array here, otherwise when the card is removed, it is removed permanently.
+		var lma = allLandmarksArray.slice();
+		//Loop once for each landmark.
+		for (i=0; i<numberOfLandmarks; i++){
+			//Get a random card from the array of all the Landmarks.
+			rand = Math.floor(Math.random() * lma.length);
+			var currLandmark = lma[rand];
+			//Remove the landmark from the array of all of them.
+			lma.splice(rand,1);
+
+			//Add the Landmark that was picked to the game.
+			$scope.gameLandmarks.push(currLandmark);
 		}
 	}
 
@@ -654,11 +678,26 @@ dominion.controller('dominionController', function($scope){
 				}
 			}
 
-			//Events and landmarks
-			allLandmarksArray = angular.fromJson(landmarksJSON);
-			allEventsArray = angular.fromJson(eventsJSON);
+			$scope.gameLandmarks = []; //Reset this games Landmarks.
 
 
+			//If 'random' is selected for landmarks, randomly choose between 2,1, and 0 landmarks.
+			if ($scope.landmarks == "rand"){
+				var randomNumber = Math.random();
+				if (randomNumber > .6666666){
+					//Pick 2
+					pickLandmark(2, allLandmarksArray);
+				}
+				else if (randomNumber > .3333333){
+					//Pick 1
+					pickLandmark(1, allLandmarksArray);
+				}
+				//else pick none.
+			}
+			//If a number and not 'random' was picked, go to the function.
+			else{
+				pickLandmark($scope.landmarks, allLandmarksArray);
+			}
 
 			//Combine the Kingdom, events, and landmarks into one array with everything? Or Pass all to function.
 			checkForKingdomSetup($scope.kingdom);
@@ -691,6 +730,7 @@ dominion.controller('dominionController', function($scope){
 
 //*********** END OF ANGULAR CODE ***********//
 
+//This is code for the old home page.
 var cardHeight = 800; //This must match the SASS variable of the same name!
 var splaySize = 60;
 

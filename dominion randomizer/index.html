@@ -164,7 +164,7 @@
                         </div>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="events" ng-model="events" value="off">
+                                <input type="radio" name="events" ng-model="events" value="zero">
                                 None
                             </label>
                         </div>
@@ -181,19 +181,19 @@
                     <div class="form-group">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="landmarks" ng-model="landmarks" value="one">
+                                <input type="radio" name="landmarks" ng-model="landmarks" value=1>
                                 1
                             </label>
                         </div>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="landmarks" ng-model="landmarks" value="two">
+                                <input type="radio" name="landmarks" ng-model="landmarks" value=2>
                                 2
                             </label>
                         </div>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="landmarks" ng-model="landmarks" value="off">
+                                <input type="radio" name="landmarks" ng-model="landmarks" value=0>
                                 None
                             </label>
                         </div>
@@ -299,6 +299,16 @@
                                 </div>
                                 <span class="expansion-label" ng-if="showExp" ng-bind="card.exp"></span>
                             </li>
+                        </ul>
+                        <div class="card-body">
+                           <h3 class="card-title" ng-if="gameLandmarks.length > 0">
+                              Landmarks
+                           </h3>
+                        </div>
+                        <ul class="list-group landmarks">
+                           <li class="list-group-item" ng-repeat="x in gameLandmarks | orderBy:['set','card'] track by $index">
+                              <span ng-bind="x.card"></span>
+                           </li>
                         </ul>
                         <div class="card-body" >
                             <h3 class="card-title" ng-if="setup.length > 0">
