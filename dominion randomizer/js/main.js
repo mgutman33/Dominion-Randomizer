@@ -11,16 +11,18 @@ app.controller('trekController', function($scope) {
 //App and controller for the Dominion Randomizer.
 var dominion = angular.module('dominion',[]);
 dominion.controller('dominionController', function($scope){
-	$scope.setDefaults = function(colPlat, shelters, events, landmarks, react, spread, aprule){
+	$scope.setDefaults = function(colPlat, shelters, eventsAdventures, eventsEmpires, events, landmarks, react, spread, aprule){
 		$scope.colPlat = colPlat;
 		$scope.shelters = shelters;
+		$scope.eventsAdventures = eventsAdventures;
+		$scope.eventsEmpires = eventsEmpires;
 		$scope.events = events;
 		$scope.landmarks = landmarks;
 		$scope.react = react;
 		$scope.spread = spread;
 		$scope.aprule = aprule;
 	};
-	$scope.setDefaults("pros", "da", "two", 1, true, true, true);
+	$scope.setDefaults("pros", "da", true, true, 2, 1, true, true, true);
 
 	$scope.allCards = angular.fromJson(cardsJSON);
 
@@ -59,6 +61,8 @@ dominion.controller('dominionController', function($scope){
 	//This will store the landmarks for the current game.
 	$scope.gameLandmarks = [];
 
+	$scope.gameEvents= [];
+
 	//Check the indexes of an expansion. Specifically used when showing or hiding the drop downs for editions of Dominion and Intrigue.
 	$scope.getExpIndex = function getExpIndex(expName){
 		for (var i=0; i<$scope.expansions.length; i++){
@@ -83,6 +87,26 @@ dominion.controller('dominionController', function($scope){
 
 			//Add the Landmark that was picked to the game.
 			$scope.gameLandmarks.push(currLandmark);
+		}
+	}
+
+	function pickEvents(numberOfEvents, allEventsArray){
+		var aea = allEventsArray.slice();
+		var i = 0;
+		var currEvent;
+		while(numberOfEvents > $scope.gameEvents.length){
+			rand = Math.floor(Math.random() * aea.length);
+			currEvent = aea[rand];
+			if ($scope.eventsAdventures && currEvent.set === "Adventures"){
+				console.log("add "+ currEvent.card + " from " + currEvent.set);
+				aea.splice(rand,1);
+				$scope.gameEvents.push(currEvent);
+			}
+			else if ($scope.eventsEmpires && currEvent.set === "Empires"){
+				console.log("add "+ currEvent.card + " from " + currEvent.set);
+				aea.splice(rand,1);
+				$scope.gameEvents.push(currEvent);
+			}
 		}
 	}
 
@@ -371,346 +395,360 @@ dominion.controller('dominionController', function($scope){
 
 		//Make sure at least one expansion is selected.
 		if ($scope.activeExpansions.length > 0){
-			//Get all the cards from the active sets.
-			$scope.filteredCards = []; //Array of all cards in the active sets.
-			var counter;
-			var inner;
-			//Loop through every card.
-			for (counter = 0; counter < $scope.allCards.length; counter++){
-				//..Future: Check if card is on blacklist..//
 
-				//Inner loop for sets.
-				for (inner = 0; inner < $scope.activeExpansions.length; inner++){
-					//For each card, check if it is in any of the sets.
-					if ($scope.allCards[counter].exp === $scope.activeExpansions[inner].name){
-						//Reset the costSelected flag for each card.
-						$scope.allCards[counter].costSelected = false;
-						//If it is, add it to the new array of filtered cards.
-						$scope.filteredCards.push($scope.allCards[counter]);
+			//Make sure the event setup is sane.
+			if (! ($scope.eventsEmpires === false && $scope.eventsAdventures === false && $scope.events != 0)){
+
+				//Get all the cards from the active sets.
+				$scope.filteredCards = []; //Array of all cards in the active sets.
+				var counter;
+				var inner;
+				//Loop through every card.
+				for (counter = 0; counter < $scope.allCards.length; counter++){
+					//..Future: Check if card is on blacklist..//
+
+					//Inner loop for sets.
+					for (inner = 0; inner < $scope.activeExpansions.length; inner++){
+						//For each card, check if it is in any of the sets.
+						if ($scope.allCards[counter].exp === $scope.activeExpansions[inner].name){
+							//Reset the costSelected flag for each card.
+							$scope.allCards[counter].costSelected = false;
+							//If it is, add it to the new array of filtered cards.
+							$scope.filteredCards.push($scope.allCards[counter]);
+						}
 					}
 				}
-			}
 
-			//Randomly pick 10 cards from the filteredCards.
-			$scope.kingdom = []; //Array for the 10 Kingdom cards.
-			var i; //counter.
-			var currentCard; //Card in this iteration.
-			var rand; //Store the random number generated since it will need to be used twice.
-			var baneFlag = false; //Track if a Bane card will be needed.
-			var attackNumber = 0; //Track number of attack cards.
-			var reactionNumber = 0;
-			var numberOfPros = 0; //Count the number of Prosperity cards.
-			var numberOfDA = 0; //Count the number of Dark Ages cards.
+				//Randomly pick 10 cards from the filteredCards.
+				$scope.kingdom = []; //Array for the 10 Kingdom cards.
+				var i; //counter.
+				var currentCard; //Card in this iteration.
+				var rand; //Store the random number generated since it will need to be used twice.
+				var baneFlag = false; //Track if a Bane card will be needed.
+				var attackNumber = 0; //Track number of attack cards.
+				var reactionNumber = 0;
+				var numberOfPros = 0; //Count the number of Prosperity cards.
+				var numberOfDA = 0; //Count the number of Dark Ages cards.
 
-			//For Alchemy picking rules.
-			var numberOfAlch = 0; //Count the number of Alchemy cards.
-			if ($scope.aprule === true){
-				var targetAlchCards = getRandomIntInclusive(3,5);
-				//console.log(targetAlchCards);
-			}
-			var alchCardPicked = false;
+				//For Alchemy picking rules.
+				var numberOfAlch = 0; //Count the number of Alchemy cards.
+				if ($scope.aprule === true){
+					var targetAlchCards = getRandomIntInclusive(3,5);
+					//console.log(targetAlchCards);
+				}
+				var alchCardPicked = false;
 
 
-			//If cost spread is true, use a variable for 2-5 costs of cards.
-			var costTarget;
-			var costCorrect;
-			if ($scope.spread === true){
-				costTarget = 2;
-			}
-			//Loop for the Kingdom.
-			for (var i=0; i<10; i++){
+				//If cost spread is true, use a variable for 2-5 costs of cards.
+				var costTarget;
+				var costCorrect;
+				if ($scope.spread === true){
+					costTarget = 2;
+				}
+				//Loop for the Kingdom.
+				for (var i=0; i<10; i++){
 
-				//If spread it true, and cards costing 2-5 have not been picked yet then pick cards more specifically.
-				if ($scope.spread === true && costTarget >= 2 && costTarget <= 5) {
-					costCorrect = false;
-					//Loop until the card of the right cost if found.
-					while (costCorrect === false){
+					//If spread it true, and cards costing 2-5 have not been picked yet then pick cards more specifically.
+					if ($scope.spread === true && costTarget >= 2 && costTarget <= 5) {
+						costCorrect = false;
+						//Loop until the card of the right cost if found.
+						while (costCorrect === false){
+							//Get a random number from 0 to length of array.
+							rand = Math.floor(Math.random() * $scope.filteredCards.length);
+							//Get the card at the rand index.
+							currentCard = $scope.filteredCards[rand];
+							//Check if the currentCard has the cost we want.
+							if (currentCard.cost_treasure === costTarget || currentCard.cost_debt === costTarget){
+								//Used when removing cards later for reactions.
+								currentCard.costSelected = true;
+
+								//If it does, than we can break the loop.
+								costCorrect = true;
+								costTarget++;
+							}
+						}
+						if (currentCard.exp	=== "Alchemy"){
+							numberOfAlch++;
+						}
+					}
+					//This is if Alechmy Picking (3 to 5 alchmey cards) is enabled.
+					/*I wanted to make the end of the kingdom the part where the alchmey cards are picked.*/
+					else if ($scope.kingdom.length >= (10 - targetAlchCards)  && numberOfAlch < targetAlchCards && $scope.expansions[($scope.getExpIndex("Alchemy"))].status===true && $scope.aprule===true){
+						alchCardPicked = false;
+						while (alchCardPicked === false){
+							rand = Math.floor(Math.random() * $scope.filteredCards.length);
+							currentCard = $scope.filteredCards[rand];
+							if (currentCard.exp === 'Alchemy'){
+								numberOfAlch++; //This had to be within the loop for all picking schemes.
+								alchCardPicked=true;
+							}
+						}
+					}
+					//If spread it not true, or all cards 2-5 have been picked, pick randomly.
+					else{
 						//Get a random number from 0 to length of array.
 						rand = Math.floor(Math.random() * $scope.filteredCards.length);
 						//Get the card at the rand index.
 						currentCard = $scope.filteredCards[rand];
-						//Check if the currentCard has the cost we want.
-						if (currentCard.cost_treasure === costTarget || currentCard.cost_debt === costTarget){
-							//Used when removing cards later for reactions.
-							currentCard.costSelected = true;
-
-							//If it does, than we can break the loop.
-							costCorrect = true;
-							costTarget++;
+						currentCard.costSelected = false;
+						if (currentCard.exp	=== "Alchemy"){
+							numberOfAlch++;
 						}
 					}
-					if (currentCard.exp	=== "Alchemy"){
-						numberOfAlch++;
-					}
-				}
-				//This is if Alechmy Picking (3 to 5 alchmey cards) is enabled.
-				/*I wanted to make the end of the kingdom the part where the alchmey cards are picked.*/
-				else if ($scope.kingdom.length >= (10 - targetAlchCards)  && numberOfAlch < targetAlchCards && $scope.expansions[($scope.getExpIndex("Alchemy"))].status===true && $scope.aprule===true){
-					alchCardPicked = false;
-					while (alchCardPicked === false){
-						rand = Math.floor(Math.random() * $scope.filteredCards.length);
-						currentCard = $scope.filteredCards[rand];
-						if (currentCard.exp === 'Alchemy'){
-							numberOfAlch++; //This had to be within the loop for all picking schemes.
-							alchCardPicked=true;
-						}
-					}
-				}
-				//If spread it not true, or all cards 2-5 have been picked, pick randomly.
-				else{
-					//Get a random number from 0 to length of array.
-					rand = Math.floor(Math.random() * $scope.filteredCards.length);
-					//Get the card at the rand index.
-					currentCard = $scope.filteredCards[rand];
-					currentCard.costSelected = false;
-					if (currentCard.exp	=== "Alchemy"){
-						numberOfAlch++;
-					}
-				}
 
-				//Add the the card picked randomly to the Kingdom
-				$scope.kingdom.push(currentCard);
-				//Remove the card picked from the array of cards in the correct expansions.
-				$scope.filteredCards.splice(rand,1);
-
-				//Check for Young Witch.
-				if (baneFlag === false){
-					if (currentCard.name === "Young Witch"){
-						baneFlag = true;
-					}
-				}
-
-				//Check if card is from Prosperity.
-				if ($scope.colPlat === "pros" && currentCard.exp === "Prosperity"){
-					numberOfPros++;
-				}
-
-				//Check if card is from Dark Ages.
-				if ($scope.shelters === "da" && currentCard.exp === "Dark Ages"){
-					numberOfDA++;
-				}
-
-				//Check if the card is an attack.
-				if (currentCard.is_attack){
-					attackNumber++;
-				}
-				//Check if the card is a reaction.
-				if (currentCard.is_reaction){
-					reactionNumber++;
-				}
-			}///End of Kingdom Picking loop.
-
-			//******* REACTION IF ATTACK IS PRESENT *******//
-
-			//If include reaction is true and there are no reactions, and at least one attack.
-			if ($scope.react && reactionNumber < 1 && attackNumber > 0){
-				//Check if there are any attacks.
-				var reactionPool = $scope.filteredCards.slice(); //Make a copy of the filteredCards.
-				var reactionFlag = false;
-				var newReact; //This will be the new added reaction card.
-				var removedFromKingdom; //This is the card that was removed.
-
-				//Remove a random card from the kingdom.
-
-				/*Dealing with an edge case where alchmey picking ruels are in effect and there
-				were exactly three Alchmey cards picked. In this case, an Alchmey card should not
-				be replaced in the kingdom with a reaction.*/
-				var shouldPickAlch = true;
-				if (numberOfAlch === 3 && $scope.aprule === true){
-					shouldPickAlch = false;
-				}
-
-				//If there is only one attack card, remove one non-attack from the kingdom, that was not cost selected.
-				if (attackNumber === 1){
-					while ($scope.kingdom.length > 9){
-						rand = Math.floor(Math.random() * $scope.kingdom.length);
-						if ($scope.kingdom[rand].is_attack === false && $scope.kingdom[rand].costSelected === false){
-							if ($scope.kingdom[rand].exp === "Alchemy" && shouldPickAlch === false){
-								//In this case, don't replace an Alchmey card.
-							}
-							else{
-								removedFromKingdom = $scope.kingdom.splice(rand,1);
-							}
-						}
-					}
-				}
-				//Otherwise, just remove any non-cost selected card.
-				else{
-					var correctlyRemovedCard = false;
-					while (correctlyRemovedCard === false){
-						rand = Math.floor(Math.random() * $scope.kingdom.length);
-						if ($scope.kingdom[rand].costSelected === false) {
-							if ($scope.kingdom[rand].exp === "Alchemy" && shouldPickAlch === false){
-								//In this case, don't replace an Alchmey card.
-							}
-							else{
-								removedFromKingdom = $scope.kingdom.splice(rand,1);
-								correctlyRemovedCard = true;
-							}
-						}
-					}
-				}
-
-				//Go through remaining cards in the kingdom to look for reaction cards.
-				while(reactionFlag === false && reactionPool.length > 0){
-					rand = Math.floor(Math.random() * reactionPool.length);
-					newReact = reactionPool[rand];
-
-					//Check if it's a reaction card.
-					if (newReact.is_reaction){
-						//If it is, flag it, and add it to the kingdom. Remove it from the filteredCards.
-						reactionFlag = true;
-						$scope.kingdom.push(newReact);
-						$scope.filteredCards.splice(rand,1);
-					}
-					//If it's not a reaction card...
-					else {
-						//Remove that card from the reaction pool.
-						reactionPool.splice(rand,1);
-					}
-				}
-				//If all remaining cards are search but there are no reactions, display error message.
-				if (reactionFlag === false){
-					alert("No reaction card could be found in the sets specified.");
-					//If this happens, return the card that was originally removed, otherwise there will not be enough cards.
-					$scope.kingdom.push(removedFromKingdom[0]);
-				}
-			}
-
-			//******* YOUNG WITCH AND BANE CARD *******//
-
-			//Remove the is_bane property from previous generation.
-			for (i=0; i<$scope.kingdom.length; i++){
-				$scope.kingdom[i].is_bane = false;
-			}
-
-			var baneCard;
-
-			var banePool = $scope.filteredCards.slice(); //Copy the remaining filteredCards.
-			//If young witch is in the kingdom...
-			while (baneFlag === true && banePool.length > 0){
-				rand = Math.floor(Math.random() * banePool.length);
-				//Pick the random card.
-				baneCard = $scope.filteredCards[rand];
-				//Remove it from the banePool.
-				banePool.splice(rand,1);
-				//Check if it is a suitable bane card.
-				if ( (baneCard.cost_treasure === 3 || baneCard.cost_treasure === 2) && baneCard.cost_potions === 0){
-					baneCard.is_bane = true;
-					$scope.kingdom.push(baneCard);
+					//Add the the card picked randomly to the Kingdom
+					$scope.kingdom.push(currentCard);
 					//Remove the card picked from the array of cards in the correct expansions.
 					$scope.filteredCards.splice(rand,1);
-					baneFlag = false;
+
+					//Check for Young Witch.
+					if (baneFlag === false){
+						if (currentCard.name === "Young Witch"){
+							baneFlag = true;
+						}
+					}
+
+					//Check if card is from Prosperity.
+					if ($scope.colPlat === "pros" && currentCard.exp === "Prosperity"){
+						numberOfPros++;
+					}
+
+					//Check if card is from Dark Ages.
+					if ($scope.shelters === "da" && currentCard.exp === "Dark Ages"){
+						numberOfDA++;
+					}
+
+					//Check if the card is an attack.
+					if (currentCard.is_attack){
+						attackNumber++;
+					}
+					//Check if the card is a reaction.
+					if (currentCard.is_reaction){
+						reactionNumber++;
+					}
+				}///End of Kingdom Picking loop.
+
+				//******* REACTION IF ATTACK IS PRESENT *******//
+
+				//If include reaction is true and there are no reactions, and at least one attack.
+				if ($scope.react && reactionNumber < 1 && attackNumber > 0){
+					//Check if there are any attacks.
+					var reactionPool = $scope.filteredCards.slice(); //Make a copy of the filteredCards.
+					var reactionFlag = false;
+					var newReact; //This will be the new added reaction card.
+					var removedFromKingdom; //This is the card that was removed.
+
+					//Remove a random card from the kingdom.
+
+					/*Dealing with an edge case where alchmey picking ruels are in effect and there
+					were exactly three Alchmey cards picked. In this case, an Alchmey card should not
+					be replaced in the kingdom with a reaction.*/
+					var shouldPickAlch = true;
+					if (numberOfAlch === 3 && $scope.aprule === true){
+						shouldPickAlch = false;
+					}
+
+					//If there is only one attack card, remove one non-attack from the kingdom, that was not cost selected.
+					if (attackNumber === 1){
+						while ($scope.kingdom.length > 9){
+							rand = Math.floor(Math.random() * $scope.kingdom.length);
+							if ($scope.kingdom[rand].is_attack === false && $scope.kingdom[rand].costSelected === false){
+								if ($scope.kingdom[rand].exp === "Alchemy" && shouldPickAlch === false){
+									//In this case, don't replace an Alchmey card.
+								}
+								else{
+									removedFromKingdom = $scope.kingdom.splice(rand,1);
+								}
+							}
+						}
+					}
+					//Otherwise, just remove any non-cost selected card.
+					else{
+						var correctlyRemovedCard = false;
+						while (correctlyRemovedCard === false){
+							rand = Math.floor(Math.random() * $scope.kingdom.length);
+							if ($scope.kingdom[rand].costSelected === false) {
+								if ($scope.kingdom[rand].exp === "Alchemy" && shouldPickAlch === false){
+									//In this case, don't replace an Alchmey card.
+								}
+								else{
+									removedFromKingdom = $scope.kingdom.splice(rand,1);
+									correctlyRemovedCard = true;
+								}
+							}
+						}
+					}
+
+					//Go through remaining cards in the kingdom to look for reaction cards.
+					while(reactionFlag === false && reactionPool.length > 0){
+						rand = Math.floor(Math.random() * reactionPool.length);
+						newReact = reactionPool[rand];
+
+						//Check if it's a reaction card.
+						if (newReact.is_reaction){
+							//If it is, flag it, and add it to the kingdom. Remove it from the filteredCards.
+							reactionFlag = true;
+							$scope.kingdom.push(newReact);
+							$scope.filteredCards.splice(rand,1);
+						}
+						//If it's not a reaction card...
+						else {
+							//Remove that card from the reaction pool.
+							reactionPool.splice(rand,1);
+						}
+					}
+					//If all remaining cards are search but there are no reactions, display error message.
+					if (reactionFlag === false){
+						alert("No reaction card could be found in the sets specified.");
+						//If this happens, return the card that was originally removed, otherwise there will not be enough cards.
+						$scope.kingdom.push(removedFromKingdom[0]);
+					}
 				}
-			}
 
-			if (baneFlag){
-				alert("A Bane card could not be found in the remaining selected cards. The card Young Witch from Cornucopia requires an 11th card be added to the Kingdom of cost 2 or 3. No cards are available that meet that critera.");
-			}
+				//******* YOUNG WITCH AND BANE CARD *******//
 
-			//Special setup for Colonies/Platinums.
+				//Remove the is_bane property from previous generation.
+				for (i=0; i<$scope.kingdom.length; i++){
+					$scope.kingdom[i].is_bane = false;
+				}
 
-			//Always On
-			if ($scope.colPlat === "on"){
-				addColPlat();
-			}
+				var baneCard;
 
-			//Randomize Based on Prosperity Cards. If there are 2 or fewer Prosperity cards, don't use Colonies or Platinums.
-			else if ($scope.colPlat === "pros"){
-				//Make a copy of the Kingdom, so I don't accidentaly modify it.
-				var countingKingdom = $scope.kingdom.slice();
-				//If there are 7 or more Prosperity cards, use Colonies and Platinums.
-				if (numberOfPros >= 7){
+				var banePool = $scope.filteredCards.slice(); //Copy the remaining filteredCards.
+				//If young witch is in the kingdom...
+				while (baneFlag === true && banePool.length > 0){
+					rand = Math.floor(Math.random() * banePool.length);
+					//Pick the random card.
+					baneCard = $scope.filteredCards[rand];
+					//Remove it from the banePool.
+					banePool.splice(rand,1);
+					//Check if it is a suitable bane card.
+					if ( (baneCard.cost_treasure === 3 || baneCard.cost_treasure === 2) && baneCard.cost_potions === 0){
+						baneCard.is_bane = true;
+						$scope.kingdom.push(baneCard);
+						//Remove the card picked from the array of cards in the correct expansions.
+						$scope.filteredCards.splice(rand,1);
+						baneFlag = false;
+					}
+				}
+
+				if (baneFlag){
+					alert("A Bane card could not be found in the remaining selected cards. The card Young Witch from Cornucopia requires an 11th card be added to the Kingdom of cost 2 or 3. No cards are available that meet that critera.");
+				}
+
+				//Special setup for Colonies/Platinums.
+
+				//Always On
+				if ($scope.colPlat === "on"){
 					addColPlat();
 				}
-				//If there more than 2 and less than 7 Prosperity cards, randomize based on number of cards.
-				else if (numberOfPros > 2 && numberOfPros < 7){
-					//Get a random number between 1 and size of kingdom (usually 10).
-					rand = Math.ceil(Math.random() * countingKingdom.length);
-					//If the random number is less than or equal to the number of Prosperity cards, include Colonines and Platinums.
-					if (rand <= numberOfPros){
+
+				//Randomize Based on Prosperity Cards. If there are 2 or fewer Prosperity cards, don't use Colonies or Platinums.
+				else if ($scope.colPlat === "pros"){
+					//Make a copy of the Kingdom, so I don't accidentaly modify it.
+					var countingKingdom = $scope.kingdom.slice();
+					//If there are 7 or more Prosperity cards, use Colonies and Platinums.
+					if (numberOfPros >= 7){
+						addColPlat();
+					}
+					//If there more than 2 and less than 7 Prosperity cards, randomize based on number of cards.
+					else if (numberOfPros > 2 && numberOfPros < 7){
+						//Get a random number between 1 and size of kingdom (usually 10).
+						rand = Math.ceil(Math.random() * countingKingdom.length);
+						//If the random number is less than or equal to the number of Prosperity cards, include Colonines and Platinums.
+						if (rand <= numberOfPros){
+							addColPlat();
+						}
+					}
+				}
+				//Randomized based on first card.
+				else if ($scope.colPlat === "first"){
+					if ($scope.kingdom[0].exp==="Prosperity"){
 						addColPlat();
 					}
 				}
-			}
-			//Randomized based on first card.
-			else if ($scope.colPlat === "first"){
-				if ($scope.kingdom[0].exp==="Prosperity"){
-					addColPlat();
+				//Total Random. 40% chance of getting Colonines and Platinums.
+				else if ($scope.colPlat === "rand"){
+					if (Math.random() * 100 > 59 ){
+						addColPlat();
+					}
 				}
-			}
-			//Total Random. 40% chance of getting Colonines and Platinums.
-			else if ($scope.colPlat === "rand"){
-				if (Math.random() * 100 > 59 ){
-					addColPlat();
-				}
-			}
 
 
-			//Special Setup for shelters. Same as Coloines and Platinums above, see comments there.
-			if ($scope.shelters === "on"){
-				addShelters();
-			}
-			else if ($scope.shelters === "first"){
-				if ($scope.kingdom[0].exp == "Dark Ages"){
+				//Special Setup for shelters. Same as Coloines and Platinums above, see comments there.
+				if ($scope.shelters === "on"){
 					addShelters();
 				}
-			}
-
-			else if ($scope.shelters === "rand"){
-				//Aprox 40% chance.
-				if (Math.random() * 100 > 59 ){
-					addShelters();
-				}
-			}
-
-			else if ($scope.shelters === "da"){
-				//Make a copy of the Kingdom, so I don't accidentaly modify it.
-				var countingKingdom = $scope.kingdom.slice();
-				if (numberOfDA >= 7){
-					addShelters();
-				}
-				else if (numberOfDA > 2 && numberOfPros < 7){
-					rand = Math.ceil(Math.random() * countingKingdom.length);
-					if (rand < numberOfDA){
+				else if ($scope.shelters === "first"){
+					if ($scope.kingdom[0].exp == "Dark Ages"){
 						addShelters();
 					}
 				}
-			}
 
-			$scope.gameLandmarks = []; //Reset this games Landmarks.
-
-
-			//If 'random' is selected for landmarks, randomly choose between 2,1, and 0 landmarks.
-			if ($scope.landmarks == "rand"){
-				var randomNumber = Math.random();
-				if (randomNumber > .6666666){
-					//Pick 2
-					pickLandmark(2, allLandmarksArray);
+				else if ($scope.shelters === "rand"){
+					//Aprox 40% chance.
+					if (Math.random() * 100 > 59 ){
+						addShelters();
+					}
 				}
-				else if (randomNumber > .3333333){
-					//Pick 1
-					pickLandmark(1, allLandmarksArray);
+
+				else if ($scope.shelters === "da"){
+					//Make a copy of the Kingdom, so I don't accidentaly modify it.
+					var countingKingdom = $scope.kingdom.slice();
+					if (numberOfDA >= 7){
+						addShelters();
+					}
+					else if (numberOfDA > 2 && numberOfPros < 7){
+						rand = Math.ceil(Math.random() * countingKingdom.length);
+						if (rand < numberOfDA){
+							addShelters();
+						}
+					}
 				}
-				//else pick none.
+
+				//LANDMARKS
+				$scope.gameLandmarks = []; //Reset this games Landmarks.
+
+				//If 'random' is selected for landmarks, randomly choose between 2,1, and 0 landmarks.
+				if ($scope.landmarks == "rand"){
+					var randomNumber = Math.random();
+					if (randomNumber > .6666666){
+						//Pick 2
+						pickLandmark(2, allLandmarksArray);
+					}
+					else if (randomNumber > .3333333){
+						//Pick 1
+						pickLandmark(1, allLandmarksArray);
+					}
+					//else pick none.
+				}
+				//If a number and not 'random' was picked, go to the function.
+				else{
+					pickLandmark($scope.landmarks, allLandmarksArray);
+				}
+
+				//EVENTS
+				$scope.gameEvents = [];
+
+				pickEvents($scope.events, allEventsArray);
+
+				//Combine the Kingdom, events, and landmarks into one array with everything? Or Pass all to function.
+				checkForKingdomSetup($scope.kingdom);
+
+				//Debugging number of cost selected cards.
+				var m;
+				var cc = 0;
+				for (m=0;m<$scope.kingdom.length;m++){
+					if ($scope.kingdom[m].costSelected){
+						cc++;
+					}
+				}
+				//console.log("Cost Selected Cards:" + cc);
 			}
-			//If a number and not 'random' was picked, go to the function.
+			//Error checking if no type of Events are in use.
 			else{
-				pickLandmark($scope.landmarks, allLandmarksArray);
+				alert("If Events are in use, 'Adventures Events' or 'Empires Events'  must be selected.");
 			}
-
-			//Combine the Kingdom, events, and landmarks into one array with everything? Or Pass all to function.
-			checkForKingdomSetup($scope.kingdom);
-
-			//Debugging number of cost selected cards.
-			var m;
-			var cc = 0;
-			for (m=0;m<$scope.kingdom.length;m++){
-				if ($scope.kingdom[m].costSelected){
-					cc++;
-				}
-			}
-			//console.log("Cost Selected Cards:" + cc);
 		}
 
 		//Show error if no expansions are selected.
