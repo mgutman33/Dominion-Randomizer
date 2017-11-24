@@ -301,6 +301,24 @@
                             </li>
                         </ul>
                         <div class="card-body">
+                            <h3 class="card-title" ng-if="gameEvents.length > 0">
+                                Events
+                            </h3>
+                        </div>
+                        <ul class="list-group events-list">
+                            <li class="list-group-item" ng-repeat="x in gameEvents | orderBy: ['set','card'] track by $index">
+                                <span ng-bind="x.card"></span>
+                                <div class="float-right">
+                                    <span ng-bind="x.cost" ng-if="x.cost > 0"></span>
+                                    <span ng-bind="x.cost" ng-if="x.cost == 0 && !x.debt"></span>
+                                    <span class="debt-cost" ng-bind="x.debt" ng-if="x.debt > 0"></span>
+                                    <span class="debt-icon" ng-if="x.debt > 0">
+                                        <img src="img/debt.png" alt=" debt">
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="card-body">
                            <h3 class="card-title" ng-if="gameLandmarks.length > 0">
                               Landmarks
                            </h3>

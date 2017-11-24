@@ -90,20 +90,21 @@ dominion.controller('dominionController', function($scope){
 		}
 	}
 
+	//To pick Events.
 	function pickEvents(numberOfEvents, allEventsArray){
+		//Have to make a copy of the array here otherwise it modifies the original when spliced.
 		var aea = allEventsArray.slice();
 		var i = 0;
 		var currEvent;
+		//Keep picking until the right number of events are picked.
 		while(numberOfEvents > $scope.gameEvents.length){
 			rand = Math.floor(Math.random() * aea.length);
 			currEvent = aea[rand];
 			if ($scope.eventsAdventures && currEvent.set === "Adventures"){
-				console.log("add "+ currEvent.card + " from " + currEvent.set);
 				aea.splice(rand,1);
 				$scope.gameEvents.push(currEvent);
 			}
 			else if ($scope.eventsEmpires && currEvent.set === "Empires"){
-				console.log("add "+ currEvent.card + " from " + currEvent.set);
 				aea.splice(rand,1);
 				$scope.gameEvents.push(currEvent);
 			}
