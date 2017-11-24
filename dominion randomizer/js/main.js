@@ -711,16 +711,7 @@ dominion.controller('dominionController', function($scope){
 
 				//If 'random' is selected for landmarks, randomly choose between 2,1, and 0 landmarks.
 				if ($scope.landmarks == "rand"){
-					var randomNumber = Math.random();
-					if (randomNumber > .6666666){
-						//Pick 2
-						pickLandmark(2, allLandmarksArray);
-					}
-					else if (randomNumber > .3333333){
-						//Pick 1
-						pickLandmark(1, allLandmarksArray);
-					}
-					//else pick none.
+					pickLandmark(getRandomIntInclusive(0,2), allLandmarksArray);
 				}
 				//If a number and not 'random' was picked, go to the function.
 				else{
@@ -730,7 +721,12 @@ dominion.controller('dominionController', function($scope){
 				//EVENTS
 				$scope.gameEvents = [];
 
-				pickEvents($scope.events, allEventsArray);
+				if ($scope.events=="rand"){
+					pickEvents(getRandomIntInclusive(0,2), allEventsArray);
+				}
+				else{
+					pickEvents($scope.events, allEventsArray);
+				}
 
 				//Combine the Kingdom, events, and landmarks into one array with everything? Or Pass all to function.
 				checkForKingdomSetup($scope.kingdom);
