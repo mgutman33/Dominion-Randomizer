@@ -30,8 +30,8 @@ dominion.controller('dominionController', function($scope){
 	$scope.expansions = [
 		{name: "Dominion", status: true},
 		{name: "Intrigue", status: true},
-		{name: "Seaside", status: true},
-		{name: "Alchemy", status: true},
+		{name: "Seaside", status: false},
+		{name: "Alchemy", status: false},
 		{name: "Prosperity", status: true},
 		{name: "Cornucopia", status: true},
 		{name: "Hinterlands", status: true},
@@ -279,10 +279,11 @@ dominion.controller('dominionController', function($scope){
 
 	/*Function for checking the kingdom cards for special setup rules. Called after kingdom is
 	picked. Includes events and landmarks. Can also be called after a card is replaced (future idea).*/
-	function checkForKingdomSetup(kingdom){
-		for (var i=0; i<kingdom.length; i++){
+	function checkForSetup(kingdom, landmarks, events){
+		var allGameCards = kingdom.concat(landmarks.concat(events));
+		for (var i=0; i<allGameCards.length; i++){
 			//Single card setup. Checking card names.
-			switch (kingdom[i].name) {
+			switch (allGameCards[i].name || allGameCards[i].card) {
 				case 'Pirate Ship':
 					addPirateMat();
 					break;
@@ -304,6 +305,7 @@ dominion.controller('dominionController', function($scope){
 					break;
 				case 'Ranger':
 				case 'Giant':
+				case 'Pilgrimage':
 					addJourneyToken();
 					break;
 				case 'Relic':
@@ -339,7 +341,6 @@ dominion.controller('dominionController', function($scope){
 				case 'Gladiator/Fortune':
 				case 'Capital':
 				case 'Tax':
-				case 'Mountain Pass':
 					addDebt();
 					break;
 				case 'Embargo':
@@ -351,28 +352,50 @@ dominion.controller('dominionController', function($scope){
 				case 'Young Witch':
 					addYoungWitch();
 					break;
+				//All the landmarks that need VP tokens (except Mountain Pass):
+				case 'Aqueduct':
+				case 'Arena':
+				case 'Basilica':
+				case 'Baths':
+				case 'Battlefield':
+				case 'Colonnade':
+				case 'Defiled Shrine':
+				case 'Labyrinth':
+				case 'Tomb':
+				//VPToken cards from events.
+				case 'Ritual':
+				case 'Salt the Earth':
+				case 'Conquest':
+				case 'Dominate':
+					addVPTokens();
+					break;
 			}
 
-			//Tokens and Taven Mat. Checking card properties other than name.
-			if (kingdom[i].requires_coin_tokens === true){
-				addCoinTokens();
-			}
-			if (kingdom[i].requires_vp_tokens === true){
+			//Special case for Landmark 'Mountain Pass' since it needs Debt AND VP Tokens.
+			if (allGameCards[i].card === "Mountain Pass"){
 				addVPTokens();
-			}
-			if (kingdom[i].cost_debt > 0){
 				addDebt();
 			}
-			if (kingdom[i].is_reserve === true){
+			//Tokens and Tavren Mat. Checking card properties other than name.
+			if (allGameCards[i].requires_coin_tokens === true){
+				addCoinTokens();
+			}
+			if (allGameCards[i].requires_vp_tokens === true){
+				addVPTokens();
+			}
+			if (allGameCards[i].cost_debt > 0 || allGameCards[i].debt > 0){
+				addDebt();
+			}
+			if (allGameCards[i].is_reserve === true){
 				addTavernMat();
 			}
-			if (kingdom[i].spoils === true){
+			if (allGameCards[i].spoils === true){
 				addSpoils();
 			}
-			if (kingdom[i].cost_potions > 0){
+			if (allGameCards[i].cost_potions > 0){
 				addPotions();
 			}
-			if (kingdom[i].is_looter){
+			if (allGameCards[i].is_looter){
 				addRuins();
 			}
 		}
@@ -730,7 +753,7 @@ dominion.controller('dominionController', function($scope){
 				}
 
 				//Combine the Kingdom, events, and landmarks into one array with everything? Or Pass all to function.
-				checkForKingdomSetup($scope.kingdom);
+				checkForSetup($scope.kingdom, $scope.gameLandmarks, $scope.gameEvents);
 
 				//Debugging number of cost selected cards.
 				var m;
