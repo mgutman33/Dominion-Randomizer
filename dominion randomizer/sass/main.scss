@@ -192,6 +192,9 @@ $reserve: #bed8a9;
 	border: none;
 	border-radius: 0px;
 	padding-bottom: 15px;
+	@include breakpoint ($md){
+			width: 75%;
+	}
 	.card-body{
 		padding-bottom: 0px;
 		&.top-body{

@@ -65,37 +65,13 @@
                 <div class="col-md">
                     <h2>Colonies and Platinums</h2>
                     <div class="form-group">
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="colPlat" ng-model="colPlat" value="pros">
-                                Randomize by number of Prosperity Cards
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="colPlat" ng-model="colPlat" value="first">
-                                Randomize based on first Kingdom card
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="colPlat" ng-model="colPlat" value="rand">
-                                Random
-                                <span class="badge" data-toggle="tooltip" title="40% chance of using Colonies and Platinums.">?</span>
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="colPlat" ng-model="colPlat" value="on">
-                                Always On
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="colPlat" ng-model="colPlat" value="off">
-                                Always Off
-                            </label>
-                        </div>
+                        <select name="colPlat" ng-model="colPlat" class="form-control" id="col-plat-select">
+                            <option value="pros">Randomize by number of Prosperity Cards</option>
+                            <option value="first">Randomize based on first Kingdom card</option>
+                            <option value="rand">Random</option>
+                            <option value="on">Always On</option>
+                            <option value="off">Always Off</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md">

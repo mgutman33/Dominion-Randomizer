@@ -157,6 +157,9 @@ html {
   border: none;
   border-radius: 0px;
   padding-bottom: 15px; }
+  @media (min-width: 768px) {
+    .results-card {
+      width: 75%; } }
   .results-card .card-body {
     padding-bottom: 0px; }
     .results-card .card-body.top-body {
