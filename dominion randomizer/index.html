@@ -77,36 +77,13 @@
                 <div class="col-md">
                     <h2>Shelters</h2>
                     <div class="form-group">
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="shelters" ng-model="shelters" value="da">
-                                Randomize by number of Dark Ages Cards
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="shelters" ng-model="shelters" value="first">
-                                Randomize based on first Kingdom Card
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="shelters" ng-model="shelters" value="rand">
-                                Random <span class="badge" data-toggle="tooltip" title="40% chance of using Shelters.">?</span>
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="shelters" ng-model="shelters" value="on">
-                                Always On
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="shelters" ng-model="shelters" value="off">
-                                Always Off
-                            </label>
-                        </div>
+                        <select class="form-control" ng-model="shelters" name="shelters" id="shelter-select">
+                            <option value="da">Randomize by number of Dark Ages Cards</option>
+                            <option value="first">Randomize based on first Kingdom Card</option>
+                            <option value="rand">Random (40% chance of using Shelters)</option>
+                            <option value="on">Always On</option>
+                            <option value="off">Always Off</option>
+                        </select>
                     </div>
                 </div>
             </div>
