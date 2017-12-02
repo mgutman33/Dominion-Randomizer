@@ -437,7 +437,7 @@ dominion.controller('dominionController', function($scope){
 						if ($scope.allCards[counter].exp === $scope.activeExpansions[inner].name){
 							//Reset the costSelected flag for each card.
 							$scope.allCards[counter].costSelected = false;
-							//If it is, add it to the new array of filtered cards.
+							//If it is in the set, add it to the new array of filtered cards.
 							$scope.filteredCards.push($scope.allCards[counter]);
 						}
 					}
@@ -475,21 +475,32 @@ dominion.controller('dominionController', function($scope){
 					//If spread it true, and cards costing 2-5 have not been picked yet then pick cards more specifically.
 					if ($scope.spread === true && costTarget >= 2 && costTarget <= 5) {
 						costCorrect = false;
-						//Loop until the card of the right cost if found.
+						//Loop until the card of the right cost is found.
+						var cardsForCostPicking = $scope.filteredCards.slice();
 						while (costCorrect === false){
-							//Get a random number from 0 to length of array.
-							rand = Math.floor(Math.random() * $scope.filteredCards.length);
-							//Get the card at the rand index.
-							currentCard = $scope.filteredCards[rand];
-							//Check if the currentCard has the cost we want.
-							if (currentCard.cost_treasure === costTarget || currentCard.cost_debt === costTarget){
-								//Used when removing cards later for reactions.
-								currentCard.costSelected = true;
+							if (cardsForCostPicking.length > 0){
+								//Get a random number from 0 to length of array.
+								rand = Math.floor(Math.random() * cardsForCostPicking.length);
+								//Get the card at the rand index.
+								currentCard = cardsForCostPicking[rand];
+								//Check if the currentCard has the cost we want.
+								if (currentCard.cost_treasure === costTarget || currentCard.cost_debt === costTarget){
+									//Used when removing cards later for reactions.
+									currentCard.costSelected = true;
 
-								//If it does, than we can break the loop.
-								costCorrect = true;
-								costTarget++;
+									//If it does, than we can break the loop.
+									costCorrect = true;
+									costTarget++;
+								}
+								else{
+									//Remove the card from the list of potential cards. This is to avoid an error where no cards of the right cost are available.
+									cardsForCostPicking.splice(rand,1)
+								}
 							}
+							else{
+								console.log("No card of cost "+ costTarget + " could be found.");
+							}
+
 						}
 						if (currentCard.exp	=== "Alchemy"){
 							numberOfAlch++;
@@ -522,8 +533,21 @@ dominion.controller('dominionController', function($scope){
 
 					//Add the the card picked randomly to the Kingdom
 					$scope.kingdom.push(currentCard);
+
+					//This loop is for removing the right card from the array of filtered cards.
+					var foundCard = false;
+					currentCardIndex = 0;
+					while (foundCard===false){
+						if (currentCard.name === $scope.filteredCards[currentCardIndex].name){
+							foundCard=true;
+						}
+						else{
+							currentCardIndex++;
+						}
+					}
+
 					//Remove the card picked from the array of cards in the correct expansions.
-					$scope.filteredCards.splice(rand,1);
+					$scope.filteredCards.splice(currentCardIndex,1);
 
 					//Check for Young Witch.
 					if (baneFlag === false){
