@@ -469,7 +469,7 @@ dominion.controller('dominionController', function($scope){
 				if ($scope.spread === true){
 					costTarget = 2;
 				}
-				//Loop for the Kingdom.
+				//Loop for the Kingdom. Kingdom is always 10 cards (for now).
 				for (var i=0; i<10; i++){
 
 					//If spread it true, and cards costing 2-5 have not been picked yet then pick cards more specifically.
@@ -498,10 +498,11 @@ dominion.controller('dominionController', function($scope){
 								}
 							}
 							else{
-								console.log("No card of cost "+ costTarget + " could be found.");
+								alert("No card of cost "+ costTarget + " could be found. Adding Random card instead.");
+								costCorrect = true;
+								costTarget++;
 							}
-
-						}
+						}///Loop!
 						if (currentCard.exp	=== "Alchemy"){
 							numberOfAlch++;
 						}
