@@ -1,13 +1,3 @@
-var app = angular.module('trekApp', []);
-app.controller('trekController', function($scope) {
-
-	//Call the json variable, and turn it into an object with Angular.
-	$scope.shipList = angular.fromJson(fleet);
-
-	//Get the default ship, which is always ID = 0, or the 0th record.
-	$scope.selectedShip = $scope.shipList[0];
-});
-
 //App and controller for the Dominion Randomizer.
 var dominion = angular.module('dominion',[]);
 dominion.controller('dominionController', function($scope){
@@ -40,6 +30,9 @@ dominion.controller('dominionController', function($scope){
 		{name: "Adventures", status: true},
 		{name: "Empires", status: true}
 	];
+
+	$scope.dominionEdition = "both";
+	$scope.intrigueEdition = "both";
 
 	//Function to filter the active expansions.
 	function findActive(exp){
@@ -483,8 +476,8 @@ dominion.controller('dominionController', function($scope){
 								rand = Math.floor(Math.random() * cardsForCostPicking.length);
 								//Get the card at the rand index.
 								currentCard = cardsForCostPicking[rand];
-								//Check if the currentCard has the cost we want.
-								if (currentCard.cost_treasure === costTarget || currentCard.cost_debt === costTarget){
+								//Check if the currentCard has the cost we want. Decided to not count cards with a potion in the cost, but do count cards with the right debt value.
+								if ( (currentCard.cost_treasure === costTarget || currentCard.cost_debt === costTarget) && currentCard.cost_potions != 1 ){
 									//Used when removing cards later for reactions.
 									currentCard.costSelected = true;
 
@@ -497,10 +490,10 @@ dominion.controller('dominionController', function($scope){
 									cardsForCostPicking.splice(rand,1)
 								}
 							}
-							else{
+							else{ //If no cards of the right cost can be found. Adds the last card selected above (which is random).
 								alert("No card of cost "+ costTarget + " could be found. Adding Random card instead.");
 								costCorrect = true;
-								costTarget++;
+								costTarget++; //This is needed, otherwise it keeps looping.
 							}
 						}///Loop!
 						if (currentCard.exp	=== "Alchemy"){
@@ -813,107 +806,23 @@ dominion.controller('dominionController', function($scope){
 
 //*********** END OF ANGULAR CODE ***********//
 
-//This is code for the old home page.
-var cardHeight = 800; //This must match the SASS variable of the same name!
-var splaySize = 60;
-
-//Create a jQuery object of all the cards.
-var $allcards = $(".big-wrap .container-fluid .card");
-
-function afixCard($cardObj, indexNum){
-	$cardObj.addClass('locked').css({"top" : splaySize * indexNum});
-}
-
-function unfixCard($cardObj, indexNum){
-	$cardObj.removeClass('locked').css({"top" : cardHeight * indexNum});
-}
-
-/*Lock cards as you scroll.*/
-function lockCards(){
-	var i;
-	//For each card, check if the point at which it should lock is reached.
-	for (i = 1; i < $allcards.length; i++){
-		if ( $(window).scrollTop() >= (cardHeight * i) - (splaySize * i) ){
-			afixCard($allcards.eq(i), i);
-		}
-		else {
-			unfixCard($allcards.eq(i),i);
-		}
-	}
-}
-
-//Handle when the top link for a card is clicked.
-function scrollToCard($cardLink){
-	//Get what card the link is in.
-	var $parentCard = $cardLink.parents(".card");
-	//This will store what number card it is.
-	var cardNumber;
-	if ($parentCard.hasClass('top-card')){
-		//If it's the top card, just scroll back to the top.
-		cardNumber = 0;
-	}
-	else if ($parentCard.hasClass('locked')){
-		//If it is locked, get the number by the top value / splay size.
-		cardNumber = parseInt($parentCard.css("top")) / splaySize;
-	}
-	else {
-		//If it is not locked or the top card, divide by the cardHeight to get the number.
-		cardNumber = parseInt($parentCard.css("top")) / cardHeight;
-	}
-
-	//Smooth scroll to the section.
-	$('html, body').animate({
-		  scrollTop: (cardNumber * cardHeight)
-	}, 850);
-}
-
-function hintArrowScroll($arrow){
-	var curCard = $arrow.parents(".card");
-	scrollToCard(curCard.next(".card").find("a.section-anchor"));
-}
-
-function scrollAnimations($topTitle){
-	if ( $(window).scrollTop() > 450){
-		$(".portfolio-link").addClass("in-view");
-	}
-	if ( $(window).scrollTop() > 335) {
-		$topTitle.addClass("repositioned");
-	}
-	else {
-		$topTitle.removeClass("repositioned");
-	}
-}
-
-//Variable for the loop.
-var prevZ;
-/*Set properties for each card except the first.
-The 0th item is not modified here, so start the index at 1.*/
-var i;
-for (i = 1; i < $allcards.length; i++){
-	//Get top and z-index of previous card.
-	prevZ = parseInt($allcards.eq(i-1).css("z-index"));
-	//Set the current card top to the previous + card hight, and the z-index to previous + 100.
-	$allcards.eq(i).css({"top" : i * cardHeight, "z-index" : prevZ + 100});
-}
-
 //Document Ready
 $(document).ready(function() {
-	//Lock cards on load, and whenever there is a scroll, lock cards.
-	lockCards();
-	$(window).scroll(function(){
-		lockCards();
-		scrollAnimations($(".top-card h1"));
-	});
-	//When any section anchor is clicked, scroll it into view.
-	$("a.section-anchor").click(function(event) {
-		//Run function.
-		scrollToCard($(this));
-		event.preventDefault();
-	});
-	$(".hint-arrow>a").click(function(event) {
-		hintArrowScroll($(this));
-		event.preventDefault();
-	});
-
-	$('[data-toggle="tooltip"]').tooltip().css("cursor","pointer");
+	/*These move the select boxes for editions into the proper place in the expansions list. I could not find any
+	other way to position them the way I wanted, without having them repeat for each item. This caused problems
+	wiht angularJS.*/
+	$("#domEdSel").detach().prependTo(".exp-list .Dominion");
+	$("#intrigueEdSel").detach().prependTo(".exp-list .Intrigue");
 });
+
+//Old code from a different page.
+/**
+var app = angular.module('trekApp', []);
+app.controller('trekController', function($scope) {
+
+	//Call the json variable, and turn it into an object with Angular.
+	$scope.shipList = angular.fromJson(fleet);
+
+	//Get the default ship, which is always ID = 0, or the 0th record.
+	$scope.selectedShip = $scope.shipList[0];
+});**/
