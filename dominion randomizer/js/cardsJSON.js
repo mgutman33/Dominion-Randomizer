@@ -2262,7 +2262,7 @@ var cardsJSON = [
 	{
 	  "description": "Reveal cards from your deck until you reveal 2 Treasure  cards. Put those Treasure cards into your hand and discard the other revealed cards.",
 	  "plus_actions": 0,
-	  "exp": "Dom1",
+	  "exp": "Dominion 1st Edition",
 	  "plus_treasure": 0,
 	  "cost_treasure": 6,
 	  "id": 127,
@@ -2313,7 +2313,7 @@ var cardsJSON = [
 	{
 	  "description": "You may immediately put your deck into your discard pile.",
 	  "plus_actions": 0,
-	  "exp": "Dom1",
+	  "exp": "Dominion 1st Edition",
 	  "plus_treasure": 2,
 	  "cost_treasure": 3,
 	  "id": 106,
@@ -2364,7 +2364,7 @@ var cardsJSON = [
 	{
 	  "description": "Trash this card. Gain a card costing  up to 5 Coins.",
 	  "plus_actions": 0,
-	  "exp": "Dom1",
+	  "exp": "Dominion 1st Edition",
 	  "plus_treasure": 0,
 	  "cost_treasure": 4,
 	  "id": 111,
@@ -2568,7 +2568,7 @@ var cardsJSON = [
 	{
 	  "description": "Each player (including you) reveals the top card of his deck and either discards it or puts it back, your choice.",
 	  "plus_actions": 1,
-	  "exp": "Dom1",
+	  "exp": "Dominion 1st Edition",
 	  "plus_treasure": 0,
 	  "cost_treasure": 4,
 	  "id": 117,
@@ -2585,7 +2585,7 @@ var cardsJSON = [
 	{
 	  "description": "Each other player reveals the top 2 cards of his deck. If they revealed any Treasure cards, they trash one of them that you choose. You may gain any or all of these trashed cards. They discard the other revealed cards.",
 	  "plus_actions": 0,
-	  "exp": "Dom1",
+	  "exp": "Dominion 1st Edition",
 	  "plus_treasure": 0,
 	  "cost_treasure": 4,
 	  "id": 118,
@@ -2653,7 +2653,7 @@ var cardsJSON = [
 	{
 	  "description": "",
 	  "plus_actions": 0,
-	  "exp": "Dom1",
+	  "exp": "Dominion 1st Edition",
 	  "plus_treasure": 2,
 	  "cost_treasure": 3,
 	  "id": 108,
@@ -3870,7 +3870,7 @@ var cardsJSON = [
 
 	//Dominion second edition:
 	{
-		"exp": "Dom2",
+		"exp": "Dominion 2ed Edition",
 		"name": "Harbinger",
 		"is_attack": false,
 		"cost_treasure": 3,
@@ -3878,7 +3878,7 @@ var cardsJSON = [
 		"text": "+1 Card. +1 Action. Look through your discard pile. You may put a card from it onto your deck."
 	},
 	{
-		"exp": "Dom2",
+		"exp": "Dominion 2ed Edition",
 		"name": "Merchant",
 		"is_attack": false,
 		"cost_treasure": 3,
@@ -3886,7 +3886,7 @@ var cardsJSON = [
 		"text": "+1 Card. +1 Action. The first time you play a Silver this turn, +$1."
 	},
 	{
-		"exp": "Dom2",
+		"exp": "Dominion 2ed Edition",
 		"name": "Vassal",
 		"is_attack": false,
 		"cost_treasure": 3,
@@ -3894,7 +3894,7 @@ var cardsJSON = [
 		"text": "+$2. Discard the top card of your deck. If it is an Action card, you may play it."
 	},
 	{
-		"exp": "Dom2",
+		"exp": "Dominion 2ed Edition",
 		"name": "Poacher",
 		"is_attack": false,
 		"cost_treasure": 4,
@@ -3902,7 +3902,7 @@ var cardsJSON = [
 		"text": "+1 Card. +1 Action. +$1. Discard a card per empty supply pile."
 	},
 	{
-		"exp": "Dom2",
+		"exp": "Dominion 2ed Edition",
 		"name": "Bandit",
 		"is_attack": true,
 		"cost_treasure": 5,
@@ -3910,7 +3910,7 @@ var cardsJSON = [
 		"text": "Gain a Gold. Each other player reveals the top 2 cards of their deck, trashes a revealed Treasure other than Copper, and discards the rest."
 	},
 	{
-		"exp": "Dom2",
+		"exp": "Dominion 2ed Edition",
 		"name": "Sentry",
 		"is_attack": false,
 		"cost_treasure": 5,
@@ -3918,7 +3918,7 @@ var cardsJSON = [
 		"text": "+1 Card. +1 Action. Look at the top 2 cards of your deck. Trash and/or discard any number of them. Put the rest back on top in any order."
 	},
 	{
-		"exp": "Dom2",
+		"exp": "Dominion 2ed Edition",
 		"name": "Artisan",
 		"is_attack": false,
 		"cost_treasure": 6,

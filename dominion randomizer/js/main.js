@@ -19,18 +19,19 @@ dominion.controller('dominionController', function($scope){
 	//Create array of objects of all sets and define their defauls.
 	$scope.expansions = [
 		{name: "Dominion", status: true},
-		{name: "Intrigue", status: true},
+		{name: "Intrigue", status: false},
 		{name: "Seaside", status: false},
 		{name: "Alchemy", status: false},
-		{name: "Prosperity", status: true},
-		{name: "Cornucopia", status: true},
-		{name: "Hinterlands", status: true},
-		{name: "Dark Ages", status: true},
-		{name: "Guilds", status: true},
-		{name: "Adventures", status: true},
-		{name: "Empires", status: true}
+		{name: "Prosperity", status: false},
+		{name: "Cornucopia", status: false},
+		{name: "Hinterlands", status: false},
+		{name: "Dark Ages", status: false},
+		{name: "Guilds", status: false},
+		{name: "Adventures", status: false},
+		{name: "Empires", status: false}
 	];
 
+	//Defaults for expansions with more than one edition.
 	$scope.dominionEdition = "both";
 	$scope.intrigueEdition = "both";
 
@@ -409,6 +410,20 @@ dominion.controller('dominionController', function($scope){
 
 		//Get an array of objects of all the active expansions.
 		$scope.activeExpansions = $scope.expansions.filter(findActive);
+
+		//This checks what edition of Dominion (original set) to use, if Dominion is being used.
+		if ($scope.expansions[$scope.getExpIndex("Dominion")].status === true){
+			//Add the appropriate expansions.
+			if ($scope.dominionEdition === "firstOnly"){
+				$scope.activeExpansions.push({name: "Dominion 1st Edition", status: true});
+			}
+			else if($scope.dominionEdition === "secondOnly"){
+				$scope.activeExpansions.push({name: "Dominion 2ed Edition", status: true});
+			}
+			else{
+				$scope.activeExpansions.push({name: "Dominion 1st Edition", status: true}, {name: "Dominion 2ed Edition", status: true});
+			}
+		}
 
 		//Make sure at least one expansion is selected.
 		if ($scope.activeExpansions.length > 0){
