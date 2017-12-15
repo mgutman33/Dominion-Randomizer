@@ -1681,7 +1681,7 @@ var cardsJSON = [
 	{
 	  "description": "Copper produces an extra 1 Coin this turn.",
 	  "plus_actions": 0,
-	  "exp": "Intrigue",
+	  "exp": "Intrigue 1st Edition",
 	  "plus_treasure": 0,
 	  "cost_treasure": 4,
 	  "id": 140,
@@ -1730,9 +1730,8 @@ var cardsJSON = [
 	  "plus_buys": 0
 	},
 	{
-	  "description": "+1 Card, +1 Action",
 	  "plus_actions": 1,
-	  "exp": "Intrigue",
+	  "exp": "Intrigue 1st Edition",
 	  "plus_treasure": 0,
 	  "cost_treasure": 3,
 	  "id": 131,
@@ -1745,7 +1744,8 @@ var cardsJSON = [
 	  "plus_cards": 1,
 	  "victory_points": 1,
 	  "plus_buys": 0,
-	  "is_action_victory" : true
+	  "is_action_victory" : true,
+	  "text": "+1 Card. +1 Action. | 1VP"
 	},
 	{
 	  "description": "+2 Coin",
@@ -1869,9 +1869,9 @@ var cardsJSON = [
 	  "plus_buys": 0
 	},
 	{
-	  "description": "Each other player reveals cards from the top of his deck until revealing one costing 3 Coins or more. He trashes that card and may gain a card costing at most 2 less than it. He discards the other revealed cards.",
+	  "description": "Each other player reveals cards from the top of his deck until revealing one costing $3 or more. He trashes that card and may gain a card costing at most $2 less than it. He discards the other revealed cards.",
 	  "plus_actions": 0,
-	  "exp": "Intrigue",
+	  "exp": "Intrigue 1st Edition",
 	  "plus_treasure": 0,
 	  "cost_treasure": 5,
 	  "id": 146,
@@ -1886,9 +1886,9 @@ var cardsJSON = [
 	  "plus_buys": 0
 	},
 	{
-	  "description": "Reveal the top 4 cards of your deck. Put the revealed Victory cards into your hand. Put the other cards on top of your deck in any order.",
+	  "text": "+1 Action. Reveal the top 4 cards of your deck. Put the revealed Victory cards into your hand. Put the other cards on top of your deck in any order.",
 	  "plus_actions": 1,
-	  "exp": "Intrigue",
+	  "exp": "Intrigue 1st Edition",
 	  "plus_treasure": 0,
 	  "cost_treasure": 4,
 	  "id": 143,
@@ -1905,7 +1905,7 @@ var cardsJSON = [
 	{
 	  "description": "Discard any number of cards. +1 Coin per card discarded. When another player plays an Attack card, you may reveal this card from your hand. If you do, +2 Cards, then put 2 cards from your hand to the top of your deck.",
 	  "plus_actions": 0,
-	  "exp": "Intrigue",
+	  "exp": "Intrigue 1st Edition",
 	  "plus_treasure": 0,
 	  "cost_treasure": 2,
 	  "id": 130,
@@ -2005,9 +2005,9 @@ var cardsJSON = [
 	  "plus_buys": 0
 	},
 	{
-	  "description": "The player to your left reveals then discards the top 2 cards of his deck. For each differently named card revealed, if it is an\u2026Action card, +2 Actions; Treasure card, +2 Coins; or Victory card, +2 Cards.",
+	  "description": "The player to your left reveals then discards the top 2 cards of his deck. For each differently named card revealed, if it is an… Action Card, +2 Actions. Treasure Card, +$2. Victory Card, +2 Cards.",
 	  "plus_actions": 0,
-	  "exp": "Intrigue",
+	  "exp": "Intrigue 1st Edition",
 	  "plus_treasure": 0,
 	  "cost_treasure": 5,
 	  "id": 149,
@@ -3924,5 +3924,63 @@ var cardsJSON = [
 		"cost_treasure": 6,
 		"is_reaction": false,
 		"text": "Gain a card to your hand costing up to $5. Put a card from your hand onto your deck."
+	},
+	//Intrigue Second edition
+	{
+		"exp": "Intrigue 2ed Edition",
+		"name": "Lurker",
+		"is_attack": false,
+		"cost_treasure": 2,
+		"is_reaction": false,
+		"text": "+1 Action. Choose one: Trash an Action card from the Supply, or gain an Action card from the trash."
+	},
+	{
+		"exp": "Intrigue 2ed Edition",
+		"name": "Diplomat",
+		"is_attack": false,
+		"cost_treasure": 4,
+		"is_reaction": true,
+		"text": "+2 Cards. If you have 5 or fewer cards in hand (after drawing), +2 Actions. | When another player plays an Attack card, you may first reveal this from a hand of 5 or more cards, to draw 2 cards then discard 3."
+	},
+	{
+		"exp": "Intrigue 2ed Edition",
+		"name": "Mill",
+		"is_attack": false,
+		"cost_treasure": 4,
+		"is_reaction": false,
+		"is_action_victory": true,
+		"text": "+1 Card. +1 Action. You may discard 2 cards, for +$2."
+	},
+	{
+		"exp": "Intrigue 2ed Edition",
+		"name": "Secret Passage",
+		"is_attack": false,
+		"cost_treasure": 4,
+		"is_reaction": false,
+		"text": "+2 Cards. +1 Action. Take a card from your hand and put it anywhere in your deck."
+	},
+	{
+		"exp": "Intrigue 2ed Edition",
+		"name": "Courtier",
+		"is_attack": false,
+		"cost_treasure": 5,
+		"is_reaction": false,
+		"text": "Reveal a card from your hand. For each type it has (Action, Attack, etc.), choose one: +1 Action; or +1 Buy; or +$3; or gain a Gold. The choices must be different."
+	},
+	{
+		"exp": "Intrigue 2ed Edition",
+		"name": "Patrol",
+		"is_attack": false,
+		"cost_treasure": 5,
+		"is_reaction": false,
+		"text": "+3 Cards. Reveal the top 4 cards of your deck. Put the Victory cards and Curses into your hand. Put the rest back in any order."
+	},
+	{
+		"exp": "Intrigue 2ed Edition",
+		"name": "Replace",
+		"is_attack": true,
+		"cost_treasure": 5,
+		"is_reaction": false,
+		"text": "Trash a card from your hand. Gain a card costing up to $2 more than it. If the gained card is an Action or Treasure, put it onto your deck; if it's a Victory card, each other player gains a Curse."
 	}
 ];
