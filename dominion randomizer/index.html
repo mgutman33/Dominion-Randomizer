@@ -33,6 +33,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <h2>Expansions</h2>
+                    <p class="text-secondary">Select which expansions to use in this game.</p>
                     <div class="form-row exp-list" ng-repeat="x in expansions">
                         <div class="col-4 col-sm-3 col-md-4 col-lg-3">
                             <div class="checkbox form-check">
@@ -53,12 +54,15 @@
                     </div>
                 </div>
                 <div class="col-md">
-                    <h2>Colonies and Platinums</h2>
+                    <h2>
+                       Colonies and Platinums
+                    </h2>
+                    <p class="text-secondary">Colonies and Platinums are extra cards aded to the supply from the Propserity expansion. Select how to chose if Colonies and Platinums will be used this game.</p>
                     <div class="form-group">
                         <select name="colPlat" ng-model="colPlat" class="form-control" id="col-plat-select">
                             <option value="pros">Randomize by number of Prosperity Cards</option>
                             <option value="first">Randomize based on first Kingdom card</option>
-                            <option value="rand">Random</option>
+                            <option value="rand">Random (40% chance)</option>
                             <option value="on">Always On</option>
                             <option value="off">Always Off</option>
                         </select>
@@ -66,11 +70,12 @@
                 </div>
                 <div class="col-md">
                     <h2>Shelters</h2>
+                    <p class="text-secondary">Shelters are alternate starting cards from the Dark Ages expansion. Select how to choose if Shelters will be used this game.</p>
                     <div class="form-group">
                         <select class="form-control" ng-model="shelters" name="shelters" id="shelter-select">
                             <option value="da">Randomize by number of Dark Ages Cards</option>
                             <option value="first">Randomize based on first Kingdom Card</option>
-                            <option value="rand">Random (40% chance of using Shelters)</option>
+                            <option value="rand">Random (40% chance)</option>
                             <option value="on">Always On</option>
                             <option value="off">Always Off</option>
                         </select>
@@ -79,7 +84,9 @@
             </div>
             <div class="row">
                 <div class="col-md">
-                    <h2>Events <span class="badge" data-toggle="tooltip" title="Events can be included even if Adventures and Empires expansions are off.">?</span></h2>
+                    <h2>Events</h2>
+                    <p class="text-secondary">Events are special cards included in the Adventures and Empries expanions. Chose how many to include.
+                       Note that Events can be used even if Adventers and Empires are not selected in 'Expansions' above.</p>
                     <div class="form-group">
                         <div class="checkbox">
                             <label>
@@ -120,7 +127,9 @@
                     </div>
                 </div>
                 <div class="col-md">
-                    <h2>Landmarks <span class="badge" data-toggle="tooltip" title="Landmarks can be included even if Empires expansion is off.">?</span></h2>
+                    <h2>Landmarks</h2>
+                    <p class="text-secondary">Landmarks are special cards from the Empires expansion. Note that
+                       Landmarks can be used even if Empires is not selected in 'Expansions' above.
                     <div class="form-group">
                         <div class="radio">
                             <label>
@@ -154,19 +163,20 @@
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" value="require" ng-model="react">
-                                Include Reaction if Attack is present
+                                Include a reaction card if any attack cards are used
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="col-md">
                     <h2>Costs</h2>
+                    <p class="text-secondary">This is an option to spread the costs of Kingdom cards so that there is at least one card of 2,3,4, and 5. used.
+                       This does not include Event cards.</p>
                     <div class="form-group">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" ng-model="spread">
-                                Include at least one card of cost 2,3,4, and 5 in the Kingdom.
-                                <span class="badge" data-toggle="tooltip" title="If checked, the Kingdom will contain at least one card of costs 2,3,4, and 5 coins or debt. This does not include Events or Landmarks">?</span>
+                                Include at least one card of cost 2,3,4, and 5 in the Kingdom
                             </label>
                         </div>
                     </div>
